@@ -1,0 +1,299 @@
+/* =========================
+   Portfolio - Single CSS (Responsive)
+   PC: 左サイド縦タブ
+   SP: 下部ナビに自動変形
+   ========================= */
+
+/* ===== Tokens ===== */
+:root{
+  --bg:#ffffff;
+  --text:#111214;
+  --muted:#5e6672;
+  --line:rgba(17,17,17,.12);
+  --card:#ffffff;
+
+  --container:1100px;
+  --radius:18px;
+  --shadow:0 10px 28px rgba(0,0,0,.08);
+
+  --rail-w:84px;          /* PCの左サイドレール幅 */
+  --bottom-nav-h:0px;     /* SP時に上書き */
+  --wm: rgba(116,165,178,.18); /* ウォーターマーク色（淡い青みグレー） */
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+html{scroll-behavior:smooth}
+body{
+  margin:0; background:var(--bg); color:var(--text);
+  font:16px/1.7 'Inter','Poppins','Segoe UI',system-ui,-apple-system,Roboto,Helvetica,Arial,sans-serif;
+  padding-left:var(--rail-w);               /* ← PC時は左レールぶん余白 */
+  padding-bottom:var(--bottom-nav-h);       /* ← SP時に下ナビぶん余白 */
+}
+
+/* ===== Utilities / Layout ===== */
+.container{width:min(100% - 32px, var(--container)); margin-inline:auto}
+.section{padding:88px 0; position:relative; border-top:1px solid var(--line)}
+.section:first-of-type{border-top:0}
+.section-title{margin:0 0 14px; font-size: clamp(20px, 3.2vw, 28px); letter-spacing:.06em}
+
+/* ===== Side Rail（PC: 縦タブ） ===== */
+.side-rail{
+  position:fixed; inset:0 auto 0 0; width:var(--rail-w);
+  border-right:1px solid var(--line);
+  background:#fff; z-index:60;
+  display:flex; align-items:center; justify-content:center;
+}
+.side-rail__nav{
+  display:flex; flex-direction:column; gap:18px; align-items:center;
+}
+.side-link{
+  writing-mode:vertical-rl; text-orientation:mixed; /* 縦書き */
+  text-decoration:none; color:#222; font-weight:900;
+  letter-spacing:.18em; font-size:.92rem;
+  padding:10px 6px; border-radius:12px;
+  transition:color .18s, background .18s, transform .06s;
+}
+.side-link:hover{ color:#000; background:#f3f4f6 }
+.side-link:active{ transform:translateY(1px) }
+.side-link:focus-visible{
+  outline:2px solid #111; outline-offset:2px; background:#f3f4f6;
+}
+
+/* ===== ウォーターマーク（ドデカ文字） ===== */
+.section-has-wm{ position:relative; overflow:hidden }
+.section-wm{
+  position:absolute;
+  inset:0 0 auto 0;        /* 上寄せ */
+  transform:translateY(-10%);
+  z-index:-1;              /* 背面へ */
+  text-align:center; pointer-events:none; user-select:none;
+  font-weight:900; letter-spacing:.16em;
+  font-size:clamp(64px, 18vw, 220px);
+  color:var(--wm);
+  line-height:1;
+}
+
+/* ===== Hero ===== */
+.hero {
+  position: relative;
+  overflow: hidden;
+  border-bottom: 1px solid var(--line);
+  background: #fff;
+
+  /* 画面いっぱいに広げる */
+  min-height: 100vh;
+  display: flex;
+  align-items: center;   /* 垂直中央 */
+  justify-content: center; /* 水平方向中央 */
+}
+
+.hero-inner {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 0 20px;       /* 左右だけ余白 */
+  width: 100%;
+}
+
+.hero-eyebrow {
+  display: inline-block;
+  margin: 0 0 20px;
+  color: #5c6372;
+  font-weight: 800;
+  letter-spacing: .22em;
+  font-size: .95rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 6px 14px;
+  background: rgba(255,255,255,0.7);
+}
+
+.hero-name {
+  margin: 0;
+  font-size: clamp(48px, 12vw, 120px); /* さらに大きめ */
+  letter-spacing: .08em;
+  line-height: 1.05;
+  font-weight: 900;
+}
+
+.hero-subname {
+  margin: 16px 0 0;
+  color: #444;
+  font-weight: 600;
+  font-size: clamp(18px, 2.5vw, 28px);
+}
+
+/* ===== Works ===== */
+.work-card{
+  display:grid; grid-template-columns:1fr; gap:0;
+  background:var(--card); border:1px solid var(--line);
+  border-radius:20px; overflow:hidden; box-shadow:var(--shadow);
+  margin:18px 0;
+}
+@media(min-width:880px){
+  .work-card{ grid-template-columns: 1.15fr 1.35fr }
+}
+.work-media{ background:#eef1f5; aspect-ratio:16/9 }
+.work-media img{ width:100%; height:100%; object-fit:cover; display:block }
+.work-body{ padding:18px }
+.work-title{ margin:0 0 6px; font-size:1.22rem }
+.work-desc{ margin:0 0 12px; color:#2d3340 }
+.work-actions{ display:flex; gap:10px; flex-wrap:wrap; margin-top:12px }
+
+/* ===== Buttons ===== */
+.btn{
+  display:inline-flex; align-items:center; justify-content:center; gap:.6rem;
+  padding:.75rem 1.05rem; border-radius:999px;
+  border:1px solid #000; background:#111; color:#fff;
+  text-decoration:none; font-weight:800; letter-spacing:.04em; cursor:pointer;
+  transition:transform .06s, filter .18s;
+}
+.btn:hover{ filter:brightness(1.05) }
+.btn:active{ transform:translateY(1px) }
+.btn.ghost{ background:#fff; color:#111; border-color:var(--line) }
+.btn.ghost:hover{ background:#f5f6f8 }
+
+/* ===== Profile ===== */
+/* フラット表示（ボックス背景を使わない） */
+.profile-basic{
+  margin:28px 0 36px;
+  font-size:clamp(20px, 3vw, 26px); /* 基本情報は大きめ */
+  font-weight:600; line-height:1.9;
+}
+.profile-basic ul{ list-style:none; margin:0; padding:0 }
+.profile-basic li{ margin:8px 0 }
+@media (min-width: 900px){
+  .profile-basic ul{ columns:2; column-gap:40px }
+}
+
+.profile-detail h3{
+  margin:20px 0 8px;
+  font-size:1.1rem; font-weight:700;
+}
+.profile-detail ul{
+  margin:0 0 14px 1.1rem; padding:0; color:#333;
+}
+.profile-detail p{ margin:0; color:#2d3340 }
+
+/* ===== Career Timeline ===== */
+.timeline{ list-style:none; padding:0; margin:0; display:grid; gap:14px }
+.time-item{ display:grid; grid-template-columns:90px 1fr; gap:14px; align-items:start }
+/* 経歴 年次バッジ */
+.time-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 90px;              /* ← 固定幅を与える */
+  min-width: 90px;
+  height: 36px;
+
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: #fff;
+  color: #2d3340;
+  font-weight: 700;
+  letter-spacing: .05em;
+  font-size: 0.9rem;
+}
+.time-body h4{ margin:0 0 4px }
+.time-body p{ margin:0; color:#3b4252 }
+
+/* ===== Contact Card（ボックスでOK） ===== */
+.contact-card{
+  background:#fff; border:1px solid var(--line); border-radius:18px;
+  padding:20px; box-shadow:var(--shadow);
+}
+
+/* ===== Footer ===== */
+.site-footer{ border-top:1px solid var(--line); background:#fbfbfd }
+.footer-inner{ padding:20px 0; text-align:center; color:#6b7280 }
+
+/* =========================
+   Responsive（スマホ最適化）
+   - 左レール → 下部ナビに変形
+   - 余白の最適化
+   ========================= */
+
+/* タブレットでレール幅を少し詰める */
+@media (max-width: 980px){
+  :root{ --rail-w:72px; }
+  .side-link{ font-size:.86rem; letter-spacing:.16em }
+}
+
+/* スマホレイアウト（左レール→下部ナビ） */
+@media (max-width: 720px){
+  :root{
+    --rail-w:0px;          /* 左の余白をゼロに */
+    --bottom-nav-h:70px;   /* 下部ナビの高さ */
+  }
+  body{
+    padding-left:var(--rail-w);
+    padding-bottom:var(--bottom-nav-h);
+  }
+
+  /* 左レールを下部固定バーに再配置 */
+  .side-rail{
+    inset:auto 0 0 0; width:100%; height:var(--bottom-nav-h);
+    border-right:0; border-top:1px solid var(--line);
+    display:flex; align-items:center; justify-content:center;
+    box-shadow:0 -6px 18px rgba(0,0,0,.06);
+  }
+  .side-rail__nav{
+    flex-direction:row; gap:8px;
+  }
+  .side-link{
+    writing-mode:initial; text-orientation:initial; /* 横書きへ */
+    font-size:.9rem; letter-spacing:.12em;
+    padding:10px 12px; border-radius:12px;
+  }
+
+  /* セクションの上下余白をやや詰める */
+  .section{ padding:64px 0 }
+
+  /* ウォーターマークのサイズ微調整 */
+  .section-wm{
+    font-size:clamp(54px, 22vw, 160px);
+    transform:translateY(-6%);
+  }
+
+  /* Works カードは1カラム固定でOK（既定のまま） */
+
+  /* Profile 基本情報は1カラムへ戻す */
+  .profile-basic ul{ columns:1 }
+}
+/* ===== Hero: 背景スライダー（背面で薄くフェード） ===== */
+.hero{ position:relative; overflow:hidden; border-bottom:1px solid var(--line); background:#fff }
+.hero-inner{ position:relative; z-index:2; text-align:center; padding:96px 0 84px }
+
+.hero-slider{
+  position:absolute; inset:0; z-index:0; pointer-events:none; /* クリック貫通 */
+}
+.hero-slide{
+  position:absolute; inset:0;
+  width:100%; height:100%; object-fit:cover;
+  opacity:0; transition:opacity 900ms ease;
+  /* 見やすさ調整：ちょいグレースケール＆暗め、薄く表示は is-active で指定 */
+  filter:grayscale(10%) contrast(1) brightness(0.9);
+  transform:scale(1.02); /* わずかに拡大で端の白フチ防止 */
+}
+.hero-slide.is-active{
+  opacity:0.22; /* ← ここで“薄さ”を調整（0.15〜0.3 がおすすめ） */
+}
+
+/* テキスト可読性を上げる微グラデ（上＝白寄り、下＝軽い影） */
+.hero-overlay{
+  position:absolute; inset:0; z-index:1; pointer-events:none;
+  background:
+    linear-gradient(to bottom, rgba(255,255,255,.85), rgba(255,255,255,.70) 30%, rgba(255,255,255,.55) 55%, rgba(255,255,255,.70) 100%);
+}
+
+/* 見出しは既存指定のままでOK（参考）
+.hero-eyebrow{ ... } .hero-name{ ... } .hero-subname{ ... }
+*/
+
+/* スマホ時は少しだけ濃くして背景を感じやすく（任意） */
+@media (max-width:720px){
+  .hero-slide.is-active{ opacity:0.26; }
+}

@@ -1,0 +1,130 @@
+/* ===== スマホ専用オーバーライド（共通 ../css/styles.css を継承） ===== */
+:root{
+  --m-pad:16px;
+  --pill-h:62px;
+  --pill-pad:10px;
+  --pill-radius:20px;
+}
+
+/* Header */
+.m-header{ position:sticky; top:0; z-index:60; backdrop-filter:saturate(140%) blur(8px); background:rgba(255,255,255,.85); border-bottom:1px solid rgba(17,17,17,.06); }
+.m-header__row{ display:flex; align-items:center; justify-content:space-between; padding:10px var(--m-pad); }
+.brand{ display:flex; align-items:center; gap:.6rem; color:inherit; text-decoration:none; font-weight:800; letter-spacing:.04em }
+.brand-logo{ width:36px; height:auto; display:block }
+.brand-text{ font-size:16px }
+.nav-toggle{ display:inline-flex; flex-direction:column; justify-content:center; gap:5px; width:42px; height:42px; border:0; background:#fff; border:1px solid rgba(17,17,17,.12); border-radius:12px; cursor:pointer; box-shadow:0 8px 18px rgba(0,0,0,.10); }
+.nav-toggle span{ display:block; width:18px; height:2px; background:#111; margin:0 auto; transition:transform .2s ease, opacity .2s ease }
+.m-menu-open .nav-toggle span:nth-child(1){ transform:translateY(7px) rotate(45deg) }
+.m-menu-open .nav-toggle span:nth-child(2){ opacity:0 }
+.m-menu-open .nav-toggle span:nth-child(3){ transform:translateY(-7px) rotate(-45deg) }
+
+.m-drawer{ position:fixed; inset:0; z-index:80; pointer-events:none; }
+.m-drawer[aria-hidden="false"]{ pointer-events:auto; }
+.m-drawer__backdrop{ position:absolute; inset:0; background:rgba(10,10,12,.42); opacity:0; transition:opacity .18s ease; }
+.m-drawer[aria-hidden="false"] .m-drawer__backdrop{ opacity:1; }
+.m-menu{ position:absolute; top:12px; right:12px; left:12px; background:#fff; border:1px solid rgba(17,17,17,.12); border-radius:16px; box-shadow:0 24px 50px rgba(16,24,40,.20); display:grid; gap:8px; padding:12px; transform:translateY(-8px); opacity:0; transition:transform .18s ease, opacity .18s ease; }
+.m-drawer[aria-hidden="false"] .m-menu{ transform:translateY(0); opacity:1; }
+.m-menu__link{ display:block; padding:12px; border-radius:12px; text-decoration:none; color:#222; font-weight:700; border:1px solid transparent; }
+.m-menu__link:hover{ background:#f7f7fb; border-color:rgba(17,17,17,.08); }
+
+/* HERO */
+.m-hero{ position:relative; overflow:hidden; padding:24px 0 12px; }
+.m-hero__bg{ position:absolute; inset:0; z-index:-1; background:
+  radial-gradient(2px 2px at 12% 28%, rgba(255,255,255,.85) 40%, transparent 41%) repeat,
+  radial-gradient(2px 2px at 88% 20%, rgba(255,255,255,.80) 40%, transparent 41%) repeat,
+  radial-gradient(1.6px 1.6px at 89% 74%, rgba(255,255,255,.65) 40%, transparent 41%) repeat,
+  var(--grad);
+  background-size:140px 140px, 180px 180px, 160px 160px, 100% 100%;
+  background-position:10% 30%, 92% 18%, 88% 78%, center; filter:saturate(110%); }
+.m-hero__inner{ padding:0 var(--m-pad); text-align:center }
+.m-hero__title{ margin:4px 0 6px; font-family:'Keifont', system-ui, sans-serif; font-size:clamp(34px,10vw,46px); letter-spacing:.06em; color:#fff; text-shadow:0 2px 14px rgba(0,0,0,.22); }
+.m-hero__lead{
+  display: inline-block;
+  margin: 0 auto 14px;
+  padding: 0;                 /* ← ボックス感を消す */
+  background: transparent;    /* ← 背景なし */
+  border: 0;                  /* ← 枠線なし */
+  box-shadow: none;           /* ← 影なし */
+  font-weight: 700;
+  color: #fff;                /* ← 白文字に変更（背景上でも視認性◎） */
+  text-shadow: 0 2px 12px rgba(0,0,0,.30); /* ← 読みやすさのため薄い影 */
+}
+/* ===== Shorts Rail（無限左スクロール） ===== */
+.short-rail{ position:relative; margin:16px 0 4px; padding:0 var(--m-pad); }
+#srMarquee{
+  display:flex; gap:12px;
+  overflow:hidden;
+  padding:0 6px 8px;
+  mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent);
+  scroll-behavior:auto;
+}
+.sr-card{
+  flex:0 0 auto;
+  width:clamp(140px, 38vw, 210px);
+  aspect-ratio:9 / 16;
+  border-radius:14px; overflow:hidden;
+  border:1px solid rgba(17,17,17,.08);
+  box-shadow:0 10px 24px rgba(16,24,40,.14);
+  background:#000;
+}
+.sr-card video{ width:100%; height:100%; object-fit:cover; display:block; }
+
+/* ▼ 動画の下に来たCTAの余白調整 */
+.m-hero__actions{ display:flex; justify-content:center; gap:10px; }
+.m-hero__actions--after-rail{ margin-top:12px; }
+
+/* セクション */
+.m-section{ padding:28px 0 }
+.m-section--alt{ background:linear-gradient(180deg, rgba(17,17,17,.04), transparent 40%) }
+.m-container{ width:min(100% - 32px, 720px); margin-inline:auto }
+.m-head{ display:flex; align-items:center; justify-content:space-between; gap:10px; margin-bottom:12px }
+.m-h2{ margin:0; font-size:clamp(18px, 5vw, 22px) }
+.m-more{ color:#606778; text-decoration:none }
+
+/* カード */
+.m-card{ background:#fff; border:1px solid rgba(17,17,17,.08); border-radius:16px; padding:16px; box-shadow:0 10px 30px rgba(16,24,40,.08); }
+.m-p{ margin:.4rem 0 0; color:#3b4252 }
+
+/* News */
+.m-list{ display:grid; gap:12px }
+.m-news__thumb{ aspect-ratio:16/9; border-radius:10px; background:
+  linear-gradient(135deg, rgba(138,122,255,.25), rgba(79,209,230,.18)),
+  linear-gradient(180deg, rgba(17,17,17,.04), rgba(17,17,17,.0)); }
+.m-news__meta{ display:flex; gap:8px; color:#606778; font-size:.9rem; margin:10px 0 0 }
+.m-news__title{ margin:6px 0 4px; font-size:1rem }
+.m-news__text{ margin:0; color:#3b4252 }
+.tag{ padding:2px 8px; border:1px solid rgba(17,17,17,.12); border-radius:999px }
+
+/* Carousel (Talents) */
+.m-carousel{ position:relative; border-radius:16px; overflow:hidden; border:1px solid rgba(17,17,17,.08); background:#f2f4f8 }
+.m-carousel__track{ display:flex; width:200%; transform:translateX(0); transition:transform .5s cubic-bezier(.22,.61,.36,1) }
+.m-carousel__slide{ flex:0 0 100%; position:relative }
+.m-carousel__slide img{ display:block; width:100%; height:auto; }
+.m-caption{ position:absolute; left:10px; bottom:10px; background:rgba(255,255,255,.85); backdrop-filter:blur(6px); border:1px solid rgba(17,17,17,.12); border-radius:10px; padding:8px 10px; font-weight:700; color:#111; }
+.m-dots{ position:absolute; left:10px; bottom:10px; display:flex; gap:6px; transform:translateY(44px); }
+.m-dot{ width:8px; height:8px; border-radius:999px; border:1px solid rgba(17,17,17,.22); background:rgba(17,17,17,.25) }
+.m-dot.is-active{ background:var(--accent) }
+
+/* CTA */
+.m-cta{ background:linear-gradient(180deg, rgba(138,122,255,.10), rgba(79,209,230,.08)); border-block:1px solid rgba(17,17,17,.08) }
+.m-cta__inner{ display:flex; flex-direction:column; gap:14px }
+.m-cta__copy h2{ margin:0 0 4px; font-size:clamp(20px, 6vw, 26px) }
+.m-cta__copy p{ margin:0; color:#3b4252 }
+.m-cta__actions{ display:flex; gap:10px; flex-wrap:wrap; justify-content:center }
+
+/* ===== 固定SNSバー ===== */
+.m-socialbar{ position:fixed; left:0; right:0; bottom:28px; display:flex; justify-content:center; z-index:70; pointer-events:none; }
+main{ padding-bottom:calc(var(--pill-h) + 38px); }
+.m-socialbar__pill{ pointer-events:auto; display:flex; gap:12px; align-items:center; padding:8px var(--pill-pad); height:var(--pill-h); background:#fff; border:1px solid rgba(17,17,17,.10); border-radius:var(--pill-radius); box-shadow:0 14px 28px rgba(0,0,0,.18), 0 0 0 1px rgba(255,255,255,.8) inset; }
+.m-socialbar__btn{ width:46px; height:46px; border-radius:12px; display:flex; align-items:center; justify-content:center; background:#fff; color:#333; text-decoration:none; border:1px solid rgba(17,17,17,.10); box-shadow:0 8px 18px rgba(0,0,0,.10); transition:transform .16s ease, background .18s ease, color .18s ease; }
+.m-socialbar__btn:hover{ transform:translateY(-2px); background:var(--accent); color:#fff }
+.m-socialbar__btn svg{ width:24px; height:24px; display:block }
+.m-menu-open .m-socialbar{ transform:translateY(10px); opacity:.96; }
+
+/* フッターの2列（スマホ） */
+@media (max-width: 979px){
+  .site-footer .footer-inner{ display:grid; grid-template-columns:1fr 1fr; gap:16px 20px; text-align:left; }
+  .site-footer .footer-inner .footer-col:first-child{ grid-column:1 / -1; text-align:center; }
+  .site-footer .footer-inner .footer-col:first-child .footer-actions{ justify-content:center; }
+}

@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Portfolio | 貞方 集</title>
+  <meta name="description" content="貞方 集（SADAKATA）のポートフォリオ。PROFILE / WORKS / CAREER / CONTACT。">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- 左サイド：縦タブ -->
+  <aside class="side-rail" aria-label="Section navigation">
+    <nav class="side-rail__nav">
+      <a class="side-link" href="#profile">PROFILE</a>
+      <a class="side-link" href="#works">WORKS</a>
+      <a class="side-link" href="#career">CAREER</a>
+      <a class="side-link" href="#contact">CONTACT</a>
+    </nav>
+  </aside>
+
+  <main>
+    <!-- ===== HERO ===== -->
+    <section class="hero" id="hero">
+    <!-- 背景スライダー：薄くフェード表示（背面） -->
+    <div class="hero-slider" aria-hidden="true">
+        <!-- ここをあなたのスクショに差し替え：枚数は何枚でもOK -->
+        <img src="./assets/hero/slide1.jpg" alt="" class="hero-slide is-active" loading="eager" />
+        <img src="./assets/hero/slide2.jpg" alt="" class="hero-slide" loading="lazy" />
+        <img src="./assets/hero/slide3.jpg" alt="" class="hero-slide" loading="lazy" />
+    </div>
+
+    <!-- 読みやすさを確保する薄いグラデ覆い -->
+    <div class="hero-overlay" aria-hidden="true"></div>
+
+    <div class="container hero-inner">
+        <p class="hero-eyebrow">PORTFOLIO</p>
+        <h1 class="hero-name">SADAKATA</h1>
+        <p class="hero-subname">貞方 集</p>
+    </div>
+    </section>
+
+  <section id="profile" class="section section-has-wm">
+    <div class="section-wm" aria-hidden="true">PROFILE</div>
+    <div class="container">
+      <h2 class="section-title">プロフィール</h2>
+
+      <div class="profile-basic">
+        <ul>
+          <li><strong>氏名：</strong> 貞方 集（Sadakata Atsumu）</li>
+          <li><strong>年齢：</strong> 21歳（2004年生まれ）</li>
+          <li><strong>出身地：</strong> 長崎県</li>
+          <li><strong>居住地：</strong> 東京都</li>
+          <li><strong>連絡先：</strong> nna487577@outlook.jp</li>
+        </ul>
+      </div>
+
+      <div class="profile-detail">
+        <h3>スキル</h3>
+        <ul>
+          <li>HTML / CSS / JavaScript（基礎）</li>
+          <li>Java（基礎）</li>
+          <li>VS Code / Git / Notion / Discord</li>
+        </ul>
+
+        <h3>強み・志向</h3>
+        <p>
+          AIを活用してWeb制作やプログラミングに取り組めることが強みです。<br>
+          新しい技術を積極的に学び、実際の制作に応用することを得意としています。<br>
+          将来的にはAIとWeb開発を組み合わせて、効率的かつ新しい価値を生み出せるサービスを作りたいと考えています。
+        </p>
+      </div>
+    </div>
+  </section>
+    <!-- ===== WORKS ===== -->
+    <section id="works" class="section section-has-wm">
+      <div class="section-wm" aria-hidden="true">WORKS</div>
+      <div class="container">
+        <h2 class="section-title">ワークス</h2>
+
+        <article class="work-card">
+          <div class="work-media">
+            <img alt="Project 1 preview" loading="lazy" src="assets/works/project1.png">
+          </div>
+          <div class="work-body">
+            <h3 class="work-title">Project 1（コーポレートサイト）</h3>
+            <p class="work-desc">ファーストビューでは、動画やビジュアルを大きく配置し、ブランドの世界観を直感的に伝えられるよう情報量を整理しました。余計なテキストや要素を削ぎ落とし、ユーザーが“サイトの目的”をすぐ理解できる導線を設計しています。配色や装飾は CORO PROJECT のブランドイメージに合わせ、エンタメ性や活気を感じられるようにデザイン。情報を整理しながらも視覚的なインパクトを重視し、訪問者の印象に残るファーストビューを実現しました。</p>
+            <div class="work-actions">
+              <a class="btn" href="./projects/project-1/index.html">サイトを開く</a>
+              <a class="btn ghost" href="./projects/project-1/detalist.html">補足資料</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="work-card">
+          <div class="work-media">
+            <img alt="Project 2 preview" loading="lazy" src="assets/works/project2.png">
+          </div>
+          <div class="work-body">
+            <h3 class="work-title">Project 2（LP）</h3>
+            <p class="work-desc">サービス紹介用のランディングページとして、訪問者が短時間で魅力を理解できるよう情報設計を工夫しました。ファーストビューではキャッチコピーとCTAボタンを中心に配置し、スクロールするごとにベネフィット → 詳細情報 → 申し込み導線と、自然にアクションへ進める流れを構築。視覚的にはシンプルな配色と余白設計を取り入れ、内容が詰まりすぎないよう調整。読みやすさとコンバージョン率の両立を意識したページ構成に仕上げました。</p>
+            <div class="work-actions">
+              <a class="btn" href="./projects/project-2/index.html">サイトを開く</a>
+              <a class="btn ghost" href="./projects/project-2/detalist.html">補足資料</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="work-card">
+          <div class="work-media">
+            <img alt="Project 3 preview" loading="lazy" src="assets/works/project3.png">
+          </div>
+          <div class="work-body">
+            <h3 class="work-title">Project 3（コーポレートサイト）</h3>
+            <p class="work-desc">キャンペーンや単発イベント向けのミニサイトとして、限られた情報をわかりやすく伝えることを重視しました。セクションごとに見出し・本文・補足情報を整理し、ユーザーが短時間で全体を把握できるスキャン性を確保。軽量なコード構成とシンプルなビジュアルで、表示速度や閲覧のしやすさも改善。少ない要素でもまとまりを感じられるデザインを目指し、効率的かつ伝わりやすいUIにしました。</p>
+            <div class="work-actions">
+              <a class="btn" href="./projects/project-3/index.html">サイトを開く</a>
+              <a class="btn ghost" href="./projects/project-3/detalist.html">補足資料</a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ===== CAREER ===== -->
+    <section id="career" class="section section-has-wm">
+      <div class="section-wm" aria-hidden="true">CAREER</div>
+      <div class="container">
+        <h2 class="section-title">経歴</h2>
+
+        <ol class="timeline">
+          <li class="time-item">
+            <span class="time-badge">2025–現在</span>
+            <div class="time-body">
+              <h4>フリーランス Webクリエイター（本業と両立）</h4>
+              <p>
+                本業と並行して、コーポレート／LP／ミニサイトなどを受注。<br>
+                企画・情報設計・デザイン・コーディング（HTML/CSS/JavaScript・Java基礎）・DB管理まで一貫対応。<br>
+                公開後は検索順位改善（SEO対策）まで含め、クライアントの成果に直結する実装を行っています。<br>
+                AIツールも積極活用し、ワイヤー検討・コード補助・画像生成などで制作効率を最大化。
+              </p>
+              <ul class="profile-list">
+                <li>要件定義から公開・運用・SEOまでワンストップで担当</li>
+                <li>SEO対策で圏外から検索結果5位まで改善した実績あり</li>
+                <li>個人として4件の納品実績</li>
+                <li>レスポンシブ設計・タイポグラフィ・余白設計で読みやすさを重視</li>
+                <li>Gitによるバージョン管理、Notion/Discordを用いた進行管理</li>
+              </ul>
+            </div>
+          </li>
+
+          <li class="time-item">
+            <span class="time-badge">2025年3月</span>
+            <div class="time-body">
+              <h4>IT系専門学校 卒業</h4>
+              <p>
+                Web基礎（HTML/CSS/JavaScript）、プログラミング基礎（Java）を修了。<br>
+                チーム開発演習での役割分担・レビュー・スケジュール管理を経験。
+              </p>
+            </div>
+          </li>
+
+          <li class="time-item">
+            <span class="time-badge">～2024</span>
+            <div class="time-body">
+              <h4>個人学習・制作</h4>
+              <p>
+                Web制作の独学を開始。ポートフォリオや模擬案件でUI設計・軽量実装を反復。<br>
+                長崎出身／東京在住。今後はAI×Webで価値を生む開発に挑戦。
+              </p>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ===== CONTACT ===== -->
+    <section id="contact" class="section section-has-wm">
+      <div class="section-wm" aria-hidden="true">CONTACT</div>
+      <div class="container">
+        <h2 class="section-title">コンタクト</h2>
+        <div class="contact-card">
+          <p>お仕事のご相談はメールにてご連絡ください。</p>
+            <a class="btn" 
+              href="https://mail.google.com/mail/?view=cm&fs=1&to=nna487577@outlook.jp&su=お問い合わせ&body=こちらに本文を入力してください">
+              nna487577@outlook.jp にメールする
+            </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <small>© <span id="year"></span> Atsumu Sadakata</small>
+    </div>
+  </footer>
+
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+  <script>
+    (function(){
+    const slides = Array.from(document.querySelectorAll('.hero-slide'));
+    if (!slides.length) return;
+
+    let i = 0;
+    const DURATION = 4200;   // 表示時間（ミリ秒）
+    const FADE_MS  = 900;    // CSSと合わせると滑らか
+
+    // タブ非表示中は止める（無駄なCPU/GPUを節約）
+    let timer = null;
+    function start(){
+        if (timer || slides.length < 2) return;
+        timer = setInterval(()=>{
+        slides[i].classList.remove('is-active');
+        i = (i + 1) % slides.length;
+        slides[i].classList.add('is-active');
+        }, DURATION);
+    }
+    function stop(){
+        if (timer){ clearInterval(timer); timer = null; }
+    }
+    document.addEventListener('visibilitychange', ()=>{
+        document.hidden ? stop() : start();
+    });
+
+    // 初期表示：1枚目を表示済み、2枚目以降をプリロード
+    slides.slice(1).forEach(img=>{
+        if (img.loading !== 'eager') img.loading = 'lazy';
+    });
+
+    // 交互に実行
+    start();
+    })();
+</script>
+</body>
+</html>

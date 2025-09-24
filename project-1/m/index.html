@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <!-- SEO 基本 -->
+    <title>CORO PROJECT | VTuber事務所公式サイト</title>
+    <meta name="description" content="CORO PROJECTはVTuberの発掘・育成・配信支援を行うプロダクションです。最新ニュース、所属タレント情報、オーディションのご案内を掲載しています。">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://coroproject.jp/">
+
+    <!-- OGP -->
+    <meta property="og:site_name" content="CORO PROJECT">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="CORO PROJECT | VTuber事務所公式サイト">
+    <meta property="og:description" content="CORO PROJECTはVTuberの発掘・育成・配信支援を行うプロダクションです。最新ニュース、所属タレント情報、オーディションのご案内を掲載しています。">
+    <meta property="og:url" content="https://coroproject.jp/">
+    <meta property="og:image" content="https://coroproject.jp/images/ogp.png">
+
+    <!-- Twitterカード -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="CORO PROJECT | VTuber事務所公式サイト">
+    <meta name="twitter:description" content="CORO PROJECTはVTuberの発掘・育成・配信支援を行うプロダクションです。最新ニュース、所属タレント情報、オーディションのご案内を掲載しています。">
+    <meta name="twitter:image" content="https://coroproject.jp/images/ogp.png">
+  <!-- 共通スタイル -->
+  <link rel="stylesheet" href="../css/styles.css">
+  <!-- スマホ専用オーバーライド -->
+  <link rel="stylesheet" href="./css/styles.css">
+  <link rel="icon" type="image/png" href="../images/logo.png">
+  <link rel="apple-touch-icon" href="../images/logo.png">
+</head>
+<body>
+  <div class="app visible">
+    <!-- ===== Header ===== -->
+    <header class="m-header">
+      <div class="m-header__row">
+        <a class="brand" href="#" aria-label="CORO PROJECT">
+          <img src="../images/toukalogo.png" alt="CORO PROJECT ロゴ" class="brand-logo">
+          <span class="brand-text">CORO PROJECT</span>
+        </a>
+        <button class="nav-toggle" id="mNavToggle" aria-expanded="false" aria-controls="mDrawer" aria-label="メニューを開く">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+
+      <div class="m-drawer" id="mDrawer" aria-hidden="true">
+        <div class="m-drawer__backdrop" id="mDrawerBackdrop"></div>
+        <nav class="m-menu" aria-label="メインナビゲーション">
+          <a href="#news" class="m-menu__link">News</a>
+          <a href="#talents" class="m-menu__link">Talents</a>
+          <a href="../html/audition.html" class="m-menu__link">Audition</a>
+          <a href="../html/contact.html" class="m-menu__link">Contact</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <!-- ===== HERO ===== -->
+      <section class="m-hero">
+        <div class="m-hero__bg" aria-hidden="true"></div>
+        <div class="m-hero__inner">
+          <h1 class="m-hero__title">ころぷろじぇくと！</h1>
+          <p class="m-hero__lead">“自分だけでは届かなかった場所へ”</p>
+
+          <!-- ===== Shorts Rail（4本／常時左スクロール無限ループ） ===== -->
+          <div class="short-rail" aria-label="ハイライトショーツ">
+            <div class="sr-marquee" id="srMarquee">
+              <!-- オリジナル4本 -->
+              <a class="sr-card" href="#news" aria-label="Short 1">
+                <video autoplay loop muted playsinline preload="metadata" src="../shorts/short1.mp4"></video>
+              </a>
+              <a class="sr-card" href="#news" aria-label="Short 2">
+                <video autoplay loop muted playsinline preload="metadata" src="../shorts/short2.mp4"></video>
+              </a>
+              <a class="sr-card" href="#news" aria-label="Short 3">
+                <video autoplay loop muted playsinline preload="metadata" src="../shorts/short3.mp4"></video>
+              </a>
+              <a class="sr-card" href="#news" aria-label="Short 4">
+                <video autoplay loop muted playsinline preload="metadata" src="../shorts/short4.mp4"></video>
+              </a>
+              <!-- ↓ JSで複製して後方に連結し、繋ぎ目のない無限ループへ -->
+            </div>
+          </div>
+
+          <!-- ▼▼ 要望どおり：動画レールの「下」にCTA配置 ▼▼ -->
+          <div class="m-hero__actions m-hero__actions--after-rail">
+            <a class="btn btn-primary" href="../html/audition.html">オーディション</a>
+            <a class="btn btn-ghost" href="#talents">タレントを見る</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== About ===== -->
+      <section id="about" class="m-section">
+        <div class="m-container">
+          <div class="m-card">
+            <h2 class="m-h2">Creator First, Creative Next.</h2>
+            <p class="m-p">
+              企画・制作・配信・コミュニティ運営まで、クリエイターの挑戦を伴走。
+              あなたらしさが一番輝く瞬間を増やします。
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== News ===== -->
+      <section id="news" class="m-section">
+        <div class="m-container">
+          <div class="m-head">
+            <h2 class="m-h2">News</h2>
+            <a class="m-more" href="#">すべて見る →</a>
+          </div>
+          <div class="m-list">
+            <article class="m-card m-news">
+              <div class="m-news__thumb"></div>
+              <div class="m-news__meta">
+                <time datetime="2025-08-20">2025.08.20</time><span class="tag">お知らせ</span>
+              </div>
+              <h3 class="m-news__title">新規タレント募集 第一期 開始</h3>
+              <p class="m-news__text">応募要項・スケジュールをご確認ください。エントリーは特設ページより。</p>
+            </article>
+
+            <article class="m-card m-news">
+              <div class="m-news__thumb"></div>
+              <div class="m-news__meta">
+                <time datetime="2025-08-10">2025.08.10</time><span class="tag">リリース</span>
+              </div>
+              <h3 class="m-news__title">公式サイト公開のお知らせ</h3>
+              <p class="m-news__text">CORO PROJECTの公式サイトを公開しました。最新情報を発信していきます。</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== Talents ===== -->
+      <section id="talents" class="m-section m-section--alt">
+        <div class="m-container">
+          <div class="m-head">
+            <h2 class="m-h2">Talents</h2>
+            <a class="m-more" href="#">一覧を見る →</a>
+          </div>
+          <div class="m-carousel" aria-roledescription="carousel">
+            <div class="m-carousel__track" id="mTalentTrack">
+              <div class="m-carousel__slide">
+                <img alt="Member A" src="data:image/svg+xml;utf8,<?xml version='1.0'?><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1600 900'><defs><linearGradient id='g1' x1='0' y1='0' x2='1' y2='1'><stop offset='0%' stop-color='%238a7aff'/><stop offset='100%' stop-color='%234fd1e6'/></linearGradient></defs><rect width='1600' height='900' fill='url(%23g1)'/><text x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='Inter,Arial' font-size='96' fill='white' opacity='0.92'>Member A — 16:9</text></svg>">
+                <div class="m-caption">Member A / YouTube・X</div>
+              </div>
+              <div class="m-carousel__slide">
+                <img alt="Member B" src="data:image/svg+xml;utf8,<?xml version='1.0'?><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1600 900'><defs><linearGradient id='g2' x1='1' y1='0' x2='0' y2='1'><stop offset='0%' stop-color='%234fd1e6'/><stop offset='100%' stop-color='%238a7aff'/></linearGradient></defs><rect width='1600' height='900' fill='url(%23g2)'/><text x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='Inter,Arial' font-size='96' fill='white' opacity='0.92'>Member B — 16:9</text></svg>">
+                <div class="m-caption">Member B / Twitch・X</div>
+              </div>
+            </div>
+            <div class="m-dots" id="mTalentDots" aria-label="スライド位置表示">
+              <button class="m-dot is-active" data-i="0" aria-label="1枚目"></button>
+              <button class="m-dot" data-i="1" aria-label="2枚目"></button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== Audition CTA ===== -->
+      <section id="audition" class="m-section m-cta">
+        <div class="m-container m-cta__inner">
+          <div class="m-cta__copy">
+            <h2>Audition</h2>
+            <p>“自分だけでは届かなかった場所へ”</p>
+          </div>
+          <div class="m-cta__actions">
+            <a class="btn btn-primary btn-lg" href="../html/audition.html">応募する</a>
+            <a class="btn btn-ghost btn-lg" href="../html/audition.html#requirements">要項を読む</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- ===== Footer ===== -->
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <div class="footer-col">
+          <div class="brand brand--footer">
+            <img src="../images/logo.png" alt="CORO PROJECT" class="footer-logo">
+            <span class="brand-text">CORO PROJECT</span>
+          </div>
+          <p class="footer-desc">CORO PROJECTはVTuberのプロデュース・配信支援を行うプロダクションです。</p>
+          <div class="footer-actions">
+            <a class="btn btn-primary" href="../html/contact.html">問い合わせ</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Links</h4>
+          <ul class="footer-links">
+            <li><a href="#news">News</a></li>
+            <li><a href="#talents">Talents</a></li>
+            <li><a href="../html/audition.html">Audition</a></li>
+            <li><a href="../html/privacy.html">Privacy Policy</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Social</h4>
+          <ul class="footer-links">
+            <li><a href="https://youtube.com/@YourChannel" target="_blank">YouTube</a></li>
+            <li><a href="https://x.com/YourAccount" target="_blank">X</a></li>
+            <li><a href="mailto:info@coroproject.jp">Mail</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="container footer-copy">
+        <small>© <span id="year"></span> CORO PROJECT</small>
+      </div>
+    </footer>
+  </div>
+
+  <!-- ===== 固定SNSバー（画面下） ===== -->
+  <nav class="m-socialbar" aria-label="Official links">
+    <div class="m-socialbar__pill">
+      <a href="https://x.com/YourAccount" target="_blank" aria-label="X" class="m-socialbar__btn">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.9 2H22l-7.7 8.8L22.7 22H16L10.9 15.5 5 22H2l8.3-9.5L1.6 2h6l4.6 6L18.9 2z" fill="currentColor"/></svg>
+      </a>
+      <a href="https://youtube.com/@YourChannel" target="_blank" aria-label="YouTube" class="m-socialbar__btn">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.5 6.2s-.2-1.6-.8-2.3c-.8-.8-1.7-.8-2.1-.9C17.3 2.7 12 2.7 12 2.7h0s-5.3 0-8.6.3c-.4 0-1.3.1-2.1.9-.6.7-.8 2.3-.8 2.3S0 8.1 0 10v1.8c0 1.9.2 3.8.2 3.8s.2 1.6.8 2.3c.8.8 1.9.8 2.3.9 1.7.2 7.2.3 8.7.3 0 0 5.3 0 8.6-.3.4 0 1.3-.1 2.1-.9.6-.7.8-2.3.8-2.3S24 13.7 24 11.8V10c0-1.9-.5-3.8-.5-3.8zM9.6 14.8V7.2l6.3 3.8-6.3 3.8z" fill="currentColor"/></svg>
+      </a>
+      <a href="mailto:info@coroproject.jp" aria-label="Mail" class="m-socialbar__btn">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 4h20v16H2z" fill="none" stroke="currentColor" stroke-width="2"/><path d="M22 6l-10 7L2 6" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+      </a>
+    </div>
+  </nav>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // ドロワーメニュー開閉
+    (function(){
+      const btn = document.getElementById('mNavToggle');
+      const drawer = document.getElementById('mDrawer');
+      const backdrop = document.getElementById('mDrawerBackdrop');
+      const links = Array.from(drawer.querySelectorAll('a'));
+      function open(){ btn.setAttribute('aria-expanded','true'); drawer.setAttribute('aria-hidden','false'); document.body.classList.add('m-menu-open'); }
+      function close(){ btn.setAttribute('aria-expanded','false'); drawer.setAttribute('aria-hidden','true'); document.body.classList.remove('m-menu-open'); }
+      btn.addEventListener('click', ()=>{ (btn.getAttribute('aria-expanded')==='true') ? close() : open(); });
+      backdrop.addEventListener('click', close);
+      links.forEach(a => a.addEventListener('click', close));
+      window.addEventListener('keydown', (e)=>{ if(e.key === 'Escape') close(); });
+    })();
+
+    // タレント・カルーセル（既存）
+    (function(){
+      const track = document.getElementById('mTalentTrack');
+      const dots  = Array.from(document.querySelectorAll('.m-dot'));
+      if(!track || !dots.length) return;
+      const SLIDES = 2; let i = 0, timer;
+      const go = n => { i=(n+SLIDES)%SLIDES; track.style.transform=`translateX(-${i*100}%)`; dots.forEach((d,idx)=>d.classList.toggle('is-active', idx===i)); restart(); };
+      const restart = ()=>{ clearTimeout(timer); timer=setTimeout(()=>go(i+1),4500); };
+      dots.forEach(d=>d.addEventListener('click', ()=>go(Number(d.dataset.i))));
+      restart();
+      let x0=null;
+      track.addEventListener('touchstart', e=>{ x0=e.touches[0].clientX; }, {passive:true});
+      track.addEventListener('touchend', e=>{ if(x0==null) return; const dx=e.changedTouches[0].clientX-x0; if(Math.abs(dx)>40) go(i+(dx<0?1:-1)); x0=null; }, {passive:true});
+    })();
+
+    // Shorts Rail：無限マルチクローン＋連続左スクロール（戻りジャンプなし）
+    (function(){
+      const marquee = document.getElementById('srMarquee');
+      if(!marquee) return;
+
+      // 1) コンテンツを複製して後方に連結（繋ぎ目なし）
+      const originals = Array.from(marquee.children);
+      const frag = document.createDocumentFragment();
+      originals.forEach(el => frag.appendChild(el.cloneNode(true)));
+      marquee.appendChild(frag);
+
+      // 2) 連続スクロール（px/秒）
+      const SPEED = 40; // 好みで微調整
+      let last = performance.now();
+
+      function tick(now){
+        const dt = (now - last) / 1000;
+        last = now;
+
+        marquee.scrollLeft += SPEED * dt;
+
+        // 半周進んだら位置だけ戻す（視覚的ジャンプなし）
+        const loopWidth = marquee.scrollWidth / 2;
+        if (marquee.scrollLeft >= loopWidth) {
+          marquee.scrollLeft -= loopWidth;
+        }
+        requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+
+      // タップで再生/一時停止（任意）
+      marquee.addEventListener('click', (e)=>{
+        const v = e.target.closest('.sr-card')?.querySelector('video');
+        if(!v) return;
+        if(v.paused){ v.play().catch(()=>{}); } else { v.pause(); }
+      });
+    })();
+  </script>
+</body>
+</html>
