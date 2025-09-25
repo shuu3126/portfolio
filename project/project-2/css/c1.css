@@ -1,0 +1,629 @@
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    body {
+        font-family: Arial, sans-serif;
+    }
+    #floating-button-root {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        z-index: 1000;
+    }
+
+    .header-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 20px;
+        background-color: white;
+        position: relative;
+        flex-wrap: wrap;
+    }
+    .logo img {
+        height: 100px; /* 適切なサイズに修正 */
+        max-height: 100px;
+        width: auto;
+    }
+    .cart-button {
+        position: absolute;
+        top: 50px;
+        right: 30px; /* 右上に移動 */
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-size: 24px;
+        color: gray;
+        z-index: 10;
+    }
+    .cart-button i {
+        position: relative; /* 相対配置に変更 */
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-size: 24px;
+        color: gray;
+    }
+    .header-title {
+        text-align: center;  /* テキストを中央に配置 */
+        margin: 20px 0;      /* 上下に余白を追加 */
+    }
+
+    .header-title h1 {
+        font-family: 'Noto Sans JP',sans-serif;
+        font-size: 80px;    /* タイトルのフォントサイズを設定 */
+        font-weight: bold;  /* 太字に設定 */
+        color: #000000;        /* 色を設定 */
+        margin: 0;          /* 余白をリセット */
+    }
+    .user-menu {
+        position: absolute;  /* 絶対配置 */
+        right: 120px;  /* 画面の右端から20pxの位置に配置 */
+        top: 60px; /* ヘッダー内の位置調整 */
+    }
+
+    #user-icon {
+        font-size: 30px;
+        cursor: pointer;
+        color: #333; /* アイコンの色 */
+        margin-left: 15px; /* カートとの間隔 */
+    }
+
+    /* 商品詳細ページのレイアウト */
+    #product-container {
+        display: flex;  /* 横並びにする */
+        align-items: center;  /* 縦方向の位置を中央揃え */
+        justify-content: center;  /* 水平方向の中央配置 */
+        width: 80%;
+        margin: 40px auto;
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    /* 商品画像 */
+    .product-image img {
+        width: 300px;  /* 画像のサイズ */
+        height: auto;
+        border-radius: 10px;
+    }
+
+    /* 商品情報（右側） */
+    .product-info {
+        margin-left: 40px;  /* 画像との間隔を作る */
+        flex: 1;  /* テキスト情報が余白を占めるように */
+    }
+
+    /* 商品名 */
+    .product-info h2 {
+        font-size: 24px;
+        margin-bottom: 10px;
+    }
+
+    /* 商品説明 */
+    .product-info p {
+        font-size: 16px;
+        margin-bottom: 10px;
+    }
+
+    /* 価格 */
+    #product-price {
+        font-size: 20px;
+        font-weight: bold;
+        color: #d9534f;
+    }
+    /* ボタンを横並び＆中央揃え */
+    .button-container {
+        display: flex;
+        justify-content: flex-start; /* 左揃え → 右揃えにしたいなら `flex-end` */
+        gap: 10px; /* ボタン間の余白 */
+        align-items: center;
+        margin-top: 250px; /* 価格との間隔を調整 */
+    }
+
+    /* ボタンの高さ・デザインを統一 */
+    #add-to-cart-btn {
+        display: inline-block;
+        width: 150px; /* 幅 */
+        height: 50px; /* 高さ */
+        padding: 0;
+        background-color: #000;
+        color: white;
+        border: none;
+        cursor: pointer;
+        font-size: 16px;
+        border-radius: 5px;
+        transition: background 0.3s ease;
+        text-align: center;
+        line-height: 50px; /* テキストを中央配置 */
+        box-sizing: border-box;
+        margin-top: 270px;
+    }
+
+    /* ホバー時のスタイル */
+    #add-to-cart-btn:hover {
+        background-color: #333;
+    }
+
+    .product-info {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start; /* すべて左寄せ（デフォルト） */
+    }
+    /* 価格の位置を調整 */
+    #product-price {
+        margin-top: 20px; /* 🔹 上の余白を追加（増やすと下がる） */
+        margin-left: 500px; /* 🔹 左に余白を追加（増やすと右へ移動） */
+        font-size: 25px; /* 🔹 価格を見やすく */
+        font-weight: bold;
+        color: #d9534f;
+    }
+
+    /* カートページのスタイル */
+    #cart-container {
+        width: 80%;
+        margin: 20px auto;
+        text-align: center;
+        background: #ffffff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .logo {
+        width: 80px;  /* ロゴの幅を小さくする */
+        height: auto;  /* 高さを自動調整（縦横比を維持） */
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+        background: white;
+    }
+
+    th, td {
+        padding: 15px;
+        border: 1px solid #ddd;
+        text-align: center;
+    }
+
+    th {
+        background-color: #000;
+        color: white;
+    }
+
+    .cart-item-name {
+        font-weight: bold;
+    }
+
+    .cart-item-price, .cart-item-total {
+        color: #333;
+    }
+
+    .quantity-input {
+        width: 60px;
+        text-align: center;
+    }
+
+    .remove-btn {
+        background: none;
+        border: none;
+        font-size: 18px;
+        cursor: pointer;
+        color: red;
+    }
+
+    .remove-btn:hover {
+        color: darkred;
+    }
+
+    .cart-footer {
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    #checkout-btn {
+        padding: 15px 25px;
+        background-color: #000;
+        color: white;
+        border: none;
+        cursor: pointer;
+        font-size: 18px;
+        border-radius: 8px;
+        transition: background 0.3s ease;
+    }
+
+    #checkout-btn:hover {
+        background-color: #000;
+    }
+    .slide-container {
+     width: 100%;
+     margin: 180px auto;
+     display: flex;
+     align-items: center;
+     overflow: hidden;
+     box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.7);
+    }
+    .slide-wrapper {
+     display: flex;
+     animation: slide-flow 20s infinite linear 1s both;
+     box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.7);
+    }
+    .slide{
+     width: 600px;
+     object-fit:cover;
+     border: 1px solid #ddd;
+     box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.7);
+    }
+    @keyframes slide-flow {
+     0% {transform: translateX(0);}
+     100% {transform: translateX(-100%);}
+    }
+    .slide-paused:hover .slide-wrapper {
+     animation-play-state: paused;
+     }
+     .slide-paused:hover .slide-wrapper img:hover {
+     opacity: .8;
+     cursor: grabbing;
+     }
+    .after-slide {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start; 
+        margin-top: 50px; /* スライドとの間に余白 */
+        padding: 20px;
+    }
+    .checkout-container {
+        text-align: right; /* 🔹 ボタンを右寄せ */
+        margin-top: 20px;  /* 🔹 上に少し余白を作る */
+    }
+
+    #checkout-btn {
+        padding: 10px 20px;
+        font-size: 16px;
+        background-color: black;
+        color: white;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+
+    #checkout-btn:disabled {
+        background-color: gray;
+        cursor: not-allowed;
+    }
+
+    .after-slide img {
+        max-width: 40%; /* 画面幅の80%に制限 */
+        height: auto;
+        border-radius: 40px; /* 角を少し丸める（任意） */
+        box-shadow: 5px 5px 15px rgba(0,0,0, 0.7);
+    }
+    .banner-text h2 {
+        font-family: 'Noto Sans JP',sans-serif;
+        font-size: 50px;
+        list-style-type: disc;
+        padding-left: 110px;
+    }
+    .banner-text ul {
+        font-family: 'Noto Sans JP',sans-serif;
+        list-style-type: disc;
+        padding-left: 200px;
+    }
+    .banner-text li {
+        font-family: 'Noto Sans JP',sans-serif;
+        font-size: 30px;
+        line-height: 1.6;
+        margin-bottom: 8px;
+    }
+    .product-list {
+        text-align: center;
+        font-size: 25px;
+        padding: 100px;
+    }
+    .products {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        justify-content: center;
+        gap:40px;
+    }
+    .product {
+        border: 1px solid #ddd;
+        padding: 10px;
+        width: 400px;
+        box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
+    }
+    .product img {
+        max-width: 100%;
+    }
+    .product-list2 {
+        text-align: center;
+        font-size: 25px;
+        padding: 100px;
+    }
+    .products2 {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(2, auto);
+        justify-content: center;
+        gap:40px;
+    }
+    .product2 {
+        border: 1px solid #ddd;
+        padding: 10px;
+        width: 100%;
+        max-width: 400px;
+        box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
+        text-align: center;
+    }
+    .product-note {
+        font-size: 14px; /* 小さめのフォント */
+        color: #666; /* グレー系の落ち着いた色 */
+        margin-top: 5px; /* タイトルとの間隔を調整 */
+        margin-bottom: 5px; /* 販売価格との間隔を調整 */
+    }
+    .product2 img {
+        max-width: 100%;
+    }
+    footer {
+        text-align: center;
+        background: #222;
+        color: white;
+        padding: 100px;
+    }
+    .footer-links a {
+        color: white;
+        margin: 10px;
+        text-decoration: none;
+    }
+    /* ✅ 特商法リンクのボタンデザイン */
+    .legal-links {
+        text-align: center;
+        margin-top: 15px;
+    }
+
+    .legal-btn {
+        display: inline-block;
+        padding: 10px 15px;
+        background-color: #333;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        font-size: 14px;
+    }
+
+    .legal-btn:hover {
+        background-color: #555;
+    }
+    /* 合計金額の表示を右寄せ */
+    #total-price {
+        text-align: right;
+        font-size: 18px;
+        font-weight: bold;
+        margin-top: 20px;
+        padding-right: 20px; /* 右に余白を追加 */
+        width: 100%; /* 幅いっぱいにして右端に寄せる */
+        display: flex;
+        justify-content: flex-end;
+    }
+    /* お問い合わせページのスタイル */
+    .contact-container {
+        max-width: 600px;
+        margin: 50px auto;
+        padding: 20px;
+        background: #fff;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .contact-form {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .contact-form label {
+        font-weight: bold;
+        margin-top: 10px;
+    }
+
+    .contact-form input,
+    .contact-form select,
+    .contact-form textarea {
+        width: 100%;
+        padding: 10px;
+        margin-top: 5px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 16px;
+    }
+
+    .contact-form button {
+        margin-top: 15px;
+        padding: 10px;
+        background-color: black;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background 0.3s;
+    }
+
+    .contact-form button:hover {
+        background-color: #333;
+    }
+    /* プライバシーポリシーページのスタイル */
+    .privacy-policy-container {
+        max-width: 800px;
+        margin: 50px auto;
+        padding: 20px;
+        background: #fff;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        line-height: 1.8;
+    }
+
+    .privacy-policy-container h2 {
+        font-size: 22px;
+        margin-top: 20px;
+        border-left: 5px solid black;
+        padding-left: 10px;
+    }
+
+    .privacy-policy-container p {
+        font-size: 16px;
+        margin-top: 10px;
+        text-align: justify;
+    }
+    @media screen and (max-width: 768px) {
+        .product-container {
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            width: 90%;
+            margin: 0 auto;
+        }
+
+        .product-image {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            max-width: 450px;
+            margin: 0 auto 15px; /* 🔹 画像を中央に配置 */
+            border-radius: 10px;
+        }
+
+        .product-info {
+            width: 100%;
+            padding: 15px;
+            text-align: left;
+        }
+        .product-info ul {
+            text-align: left;
+            padding-left: 20px;
+            list-style-position: inside; /* 箇条書きの●を内側に */
+          }
+
+        /* 価格の位置を修正 */
+        #product-price {
+            text-align: left;
+            margin-top: 10px;
+            font-size: 20px;
+            font-weight: bold;
+            color: #d9534f;
+            margin-left: 0; /* 🔹 はみ出し修正 */
+        }
+
+        .button-container {
+            flex-direction: column;
+            gap: 15px;
+            width: 100%;
+            text-align: center;
+            margin-top: 25px;
+        }
+
+        #add-to-cart-btn {
+            display: flex;
+            justify-content: center;
+            align-items: center; /* 🔹 ボタン内のテキストを中央配置 */
+            width: 100%;
+            max-width: 320px;
+            margin: auto;
+            padding: 14px;
+            font-size: 16px;
+            border-radius: 8px;
+        }
+    }
+    /* ============================ */
+    /* 🔹 スマホ向けカートページ最適化 */
+    /* ============================ */
+    @media screen and (max-width: 768px) {
+        /* カート全体のレイアウト調整 */
+        #cart-container {
+            width: 95%;
+            padding: 15px;
+            margin: 0 auto;
+        }
+
+        /* テーブルを縦並びに変更 */
+        table {
+            display: block;
+            width: 100%;
+            overflow-x: auto;
+            white-space: nowrap;
+        }
+
+        thead {
+            display: none; /* ヘッダー（商品名, 価格など）を非表示 */
+        }
+
+        tbody {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+        }
+
+        tr {
+            display: flex;
+            flex-direction: column;
+            background: #fff;
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        td {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 10px;
+            border-bottom: none;
+        }
+
+        /* 🖼 商品画像を目立たせる */
+        td img {
+            max-width: 100px;
+            height: auto;
+            border-radius: 5px;
+        }
+
+        /* 合計金額の位置調整 */
+        #total-price {
+            text-align: right;
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 15px;
+        }
+
+        /* 🛒 購入ボタンをフル幅に */
+        .checkout-container {
+            width: 100%;
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        #checkout-btn {
+            width: 100%;
+            padding: 15px;
+            font-size: 18px;
+            text-align: center;
+            background: black;
+            color: white;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+        }
+
+        #checkout-btn:disabled {
+            background-color: gray;
+            cursor: not-allowed;
+        }
+    }
+
+</style>

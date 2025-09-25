@@ -1,0 +1,466 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>TOP | Office Sada（明治の宅配）</title>
+  <meta name="description" content="長崎の明治宅配サービス Office Sada。ミルク・ヨーグルトの定期宅配、申込み・ご相談はこちら。">
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* ===== TOP固有（最小限） ===== */
+    html{ scroll-behavior:smooth }
+
+    .hero-cta{ display:flex; gap:10px; flex-wrap:wrap; margin-top:10px; }
+
+    .banner{
+      border:1px solid var(--line); border-radius:18px; overflow:hidden;
+      background:#fff; box-shadow:0 10px 24px rgba(14,37,80,.08);
+    }
+    .banner img{ width:100%; display:block; object-fit:cover; aspect-ratio: 16/4.5; }
+
+    .sec .sub{ color:var(--muted); margin:0 0 8px; font-weight:700 }
+    .more-center{ text-align:center; margin-top:16px }
+    .about-corp .cols p{ margin:0 }
+
+    /* ===== 企業理念 BG を “haikei.milk.png” に差し替え ===== */
+    .philo{
+      position: relative;
+      isolation: isolate; /* ::before を下層に固定 */
+    }
+    .philo::before{
+      content:"";
+      position:absolute; inset:0;
+      background: url("images/haikei.milk.png") center/cover no-repeat;
+      opacity:.9;         /* ほぼそのまま表示（白ミルク基調） */
+      z-index: -1;        /* 背景へ */
+    }
+    /* テキストを読みやすくする薄いベール（必要なら） */
+    @media (min-width:901px){
+      .philo::after{
+        content:""; position:absolute; inset:0;
+        background: linear-gradient(180deg, rgba(255,255,255,.55), rgba(255,255,255,.35));
+        z-index:-1;
+      }
+    }
+  </style>
+</head>
+
+<!-- TOPはローダーを使うので has-loader を付与 -->
+<body id="top" class="has-loader">
+
+<!-- ===== Loader ===== -->
+<div id="loader" aria-hidden="true">
+  <div class="loader-center">
+    <div class="brand-bounce">
+      <span class="char" style="--i:0">O</span>
+      <span class="char" style="--i:1">f</span>
+      <span class="char" style="--i:2">f</span>
+      <span class="char" style="--i:3">i</span>
+      <span class="char" style="--i:4">c</span>
+      <span class="char" style="--i:5">e</span>
+      <span class="char" style="--i:6">&nbsp;</span>
+      <span class="char" style="--i:7">S</span>
+      <span class="char" style="--i:8">a</span>
+      <span class="char" style="--i:9">d</span>
+      <span class="char" style="--i:10">a</span>
+    </div>
+    <div class="loader-sub">明治のミルクを、毎朝あなたへ。</div>
+  </div>
+
+  <div class="milk-fill">
+    <div class="surface-wrap">
+      <svg class="surface back" viewBox="0 0 120 36" preserveAspectRatio="none">
+        <path d="M0,24 C20,18 40,30 60,24 C80,18 100,30 120,24 L120,36 L0,36 Z"/>
+      </svg>
+      <svg class="surface front" viewBox="0 0 120 36" preserveAspectRatio="none">
+        <path d="M0,22 C20,16 40,28 60,22 C80,16 100,28 120,22 L120,36 L0,36 Z"/>
+      </svg>
+    </div>
+    <div class="foam">
+      <span style="--dx:-120px;--delay:.1s"></span>
+      <span style="--dx:-60px;--delay:.2s"></span>
+      <span style="--dx:0px;--delay:.3s"></span>
+      <span style="--dx:60px;--delay:.4s"></span>
+      <span style="--dx:120px;--delay:.5s"></span>
+    </div>
+  </div>
+</div>
+
+<!-- ===== Header ===== -->
+<header class="header-wide">
+  <div class="wrap header-top">
+    <a class="brand" href="index.html">
+      <span>長崎宅配サービス <b>Office Sada</b></span>
+      <small>Nagasaki Delivery Services</small>
+    </a>
+    <div class="head-actions">
+      <!-- PC：申込 → 電話（電話カードは右側） -->
+      <a class="btn cta-orange only-desktop" href="html/contact.html#apply">✎ 新規お申込み</a>
+      <a class="call-card only-desktop" href="tel:08027992388">
+        <span class="call-ico">📞</span>
+        <span class="call-text">
+          <em>お客様窓口</em>
+          <b>080-2799-2388</b>
+          <small>受付 6:00–18:00</small>
+        </span>
+      </a>
+      <!-- SP：ハンバーガー -->
+      <button class="nav-toggle" aria-controls="mobileNav" aria-expanded="false" aria-label="メニュー">☰</button>
+    </div>
+  </div>
+  <div class="wrap header-row">
+    <nav aria-label="グローバルナビ">
+      <a href="html/items.html">商品一覧</a>
+      <a href="html/service.html">宅配サービスについて</a>
+      <a href="html/company.html">会社案内</a>
+      <a href="html/contact.html">お問い合わせ</a>
+    </nav>
+  </div>
+  <!-- SPメニュー（2ボタン含む） -->
+  <div id="mobileNav" class="mobile-nav" hidden>
+    <div class="wrap">
+      <a class="call-card only-mobile" href="tel:08027992388">
+        <span class="call-ico">📞</span>
+        <span class="call-text"><em>お客様窓口</em><b>080-2799-2388</b><small>受付 6:00–18:00</small></span>
+      </a>
+      <a class="btn cta-orange only-mobile" href="html/contact.html#apply">✎ 新規お申込み</a>
+      <hr class="mn-sep">
+      <a href="html/items.html">商品一覧</a>
+      <a href="html/service.html">宅配サービスについて</a>
+      <a href="html/company.html">会社案内</a>
+      <a href="html/contact.html">お問い合わせ</a>
+    </div>
+  </div>
+</header>
+
+<!-- ===== Slider（箱型） ===== -->
+<section class="sec-narrow" aria-label="おすすめスライド">
+  <div class="wrap">
+    <div class="os-slider boxed" data-interval="4200">
+      <div class="os-slides">
+        <figure class="os-slide">
+          <img src="images/slide1.png" alt="朝の配達イメージ">
+          <figcaption>朝いちばんに新鮮なお届け</figcaption>
+        </figure>
+        <figure class="os-slide">
+          <img src="images/slide2.png" alt="ヨーグルトと乳製品">
+          <figcaption>定番のミルク＆ヨーグルト</figcaption>
+        </figure>
+        <figure class="os-slide">
+          <img src="images/slide3.png" alt="地域の暮らしサポート">
+          <figcaption>地域の暮らしをそっと支える</figcaption>
+        </figure>
+      </div>
+      <div class="os-dots" role="tablist" aria-label="スライド切替">
+        <button class="os-dot" aria-label="1枚目" aria-selected="true"></button>
+        <button class="os-dot" aria-label="2枚目"></button>
+        <button class="os-dot" aria-label="3枚目"></button>
+      </div>
+      <button class="os-nav os-prev" aria-label="前のスライド">‹</button>
+      <button class="os-nav os-next" aria-label="次のスライド">›</button>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 企業理念（BG: haikei.milk.png） ===== -->
+<section class="philo" aria-label="企業理念">
+  <div class="philo-wave philo-wave-top" aria-hidden="true"></div>
+
+  <div class="wrap philo-inner">
+    <div class="philo-copy">
+      <p class="philo-kicker">PHILOSOPHY</p>
+      <h2 class="philo-title">
+        毎朝の “あたりまえ” を、<br>
+        もっとやさしく、もっと確かに。
+      </h2>
+      <p class="philo-lead">
+        私たちは、長与・長崎のくらしに寄り添い、<br>
+        新鮮・安心・継続の価値をお届けします。<br>
+        それは、家族の健康を見守る「明日の一杯」から。
+      </p>
+
+      <ul class="pillpoints">
+        <li>地域密着のルート最適化</li>
+        <li>早朝配達 × 品質管理</li>
+        <li>家族に合わせた提案</li>
+        <li>LINEで簡単連絡</li>
+      </ul>
+
+      <div class="philo-cta">
+        <a class="btn cta-orange" href="html/contact.html#apply">✎ 新規お申込み</a>
+        <a class="btn ghost" href="html/company.html">会社案内をみる</a>
+      </div>
+    </div>
+
+    <figure class="philo-visual" aria-hidden="true">
+      <img src="images/slide2.png" alt="">
+    </figure>
+  </div>
+
+  <div class="philo-bubbles" aria-hidden="true">
+    <span style="--x:12%; --y:18%; --s:10px;"></span>
+    <span style="--x:22%; --y:68%; --s:14px;"></span>
+    <span style="--x:78%; --y:24%; --s:12px;"></span>
+    <span style="--x:86%; --y:72%; --s:16px;"></span>
+  </div>
+
+  <div class="philo-wave philo-wave-bottom" aria-hidden="true"></div>
+</section>
+
+<!-- ===== 3つのメリット ===== -->
+<section class="sec">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>宅配のメリット</h2>
+      <p class="lead-xl">毎朝の習慣を、もっと手軽に。栄養・安心・続けやすさ。</p>
+    </div>
+    <div class="grid3">
+      <div class="card">
+        <h3>新鮮そのまま</h3>
+        <p>低温ルートでご家庭の玄関先に。朝いちばんにお届けします。</p>
+      </div>
+      <div class="card">
+        <h3>家族で続けやすい</h3>
+        <p>本数・銘柄・曜日のご相談OK。暮らしに合わせて柔軟に。</p>
+      </div>
+      <div class="card">
+        <h3>不在でも安心</h3>
+        <p>保冷受箱で鮮度キープ。夜明け前の配達でもしっかり品質管理。</p>
+      </div>
+    </div>
+    <div class="hero-cta">
+      <a class="btn cta-orange" href="html/contact.html#apply">✎ 新規お申込み</a>
+      <a class="btn ghost" href="html/service.html">宅配サービスのしくみ</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 人気ラインアップ ===== -->
+<section class="sec">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>人気ラインアップ</h2>
+      <p class="lead-xl">定番の牛乳・ヨーグルトほか、機能性飲料も取扱い。</p>
+    </div>
+    <div class="lineup-grid">
+      <article class="lp">
+        <img src="images/slide1.png" alt="牛乳（イメージ）">
+        <h3>牛乳・乳飲料</h3>
+        <ul>
+          <li>毎朝の定番を低温でお届け</li>
+          <li>本数・銘柄は相談OK</li>
+        </ul>
+      </article>
+      <article class="lp">
+        <img src="images/slide2.png" alt="ヨーグルト（イメージ）">
+        <h3>ヨーグルト</h3>
+        <ul>
+          <li>R-1 / LG21 など人気シリーズ</li>
+          <li>飲むタイプも選べます</li>
+        </ul>
+      </article>
+      <article class="lp">
+        <img src="images/slide3.png" alt="厳選品（イメージ）">
+        <h3>季節・厳選品</h3>
+        <ul>
+          <li>時期限定のおすすめ</li>
+          <li>ギフト対応もご相談ください</li>
+        </ul>
+      </article>
+    </div>
+    <p class="more-center"><a class="more" href="html/items.html">商品一覧をみる</a></p>
+  </div>
+</section>
+
+<!-- ===== ご利用の流れ ===== -->
+<section class="sec">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>ご利用の流れ</h2>
+      <p class="lead-xl">初めての方も簡単。最短で次回配達日からスタート。</p>
+    </div>
+    <ol class="steps">
+      <li>
+        <h3>① お申込み</h3>
+        <p>WEBフォームまたはお電話で。ご要望・本数をお聞きします。</p>
+      </li>
+      <li>
+        <h3>② お打合せ</h3>
+        <p>配達曜日や受箱の設置など、担当スタッフがご案内。</p>
+      </li>
+      <li>
+        <h3>③ お届け開始</h3>
+        <p>ご希望の本数と銘柄で、早朝に玄関先へお届けします。</p>
+      </li>
+      <li>
+        <h3>④ ご継続/変更</h3>
+        <p>銘柄・本数・お休み等、いつでもご相談ください。</p>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- ===== お知らせ / キャンペーン ===== -->
+<section class="sec news">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>お知らせ・キャンペーン</h2>
+      <p class="lead-xl">最新情報や季節のお得なご案内。</p>
+    </div>
+
+    <div class="banner" style="margin-bottom:16px">
+      <img src="images/slide2.png" alt="キャンペーン（代替画像）">
+    </div>
+
+    <div class="news-list">
+      <article class="news-item">
+        <div class="news-meta">
+          <span class="badge notice">お知らせ</span><time>2025-09-01</time>
+        </div>
+        <h3>秋のおすすめセットのご案内</h3>
+        <p class="excerpt">季節限定の厳選品をセットでお届け。数量限定につきお早めに。</p>
+        <a class="more" href="html/items.html">詳しくみる</a>
+      </article>
+      <article class="news-item">
+        <div class="news-meta">
+          <span class="badge info">ご案内</span><time>2025-08-21</time>
+        </div>
+        <h3>配達ルート最適化のお知らせ</h3>
+        <p class="excerpt">一部地域の配達曜日が変更になります。対象のお客さまへ順次ご案内。</p>
+        <a class="more" href="html/service.html">サービスについて</a>
+      </article>
+      <article class="news-item">
+        <div class="news-meta">
+          <span class="badge info">ご案内</span><time>2025-07-30</time>
+        </div>
+        <h3>公式LINEのご利用開始</h3>
+        <p class="excerpt">休止連絡や本数変更をLINEで簡単に。友だち追加はこちら。</p>
+        <a class="more" href="html/contact.html#sns">連絡方法をみる</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 会社情報 + 窓口（2カラム） ===== -->
+<section class="sec about-corp">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>会社情報・窓口</h2>
+      <p class="lead-xl">地域に根ざした宅配で、健康な毎日をサポートします。</p>
+    </div>
+    <div class="cols">
+      <div>
+        <div class="fact-card">
+          <dl>
+            <div><dt>屋号</dt><dd>株式会社 いしばしミルク（Office Sada）</dd></div>
+            <div><dt>所在地</dt><dd>〒851-2127 長崎県西彼杵郡長与町高田郷</dd></div>
+            <div><dt>連絡先</dt><dd><a href="tel:08027992388">080-2799-2388</a></dd></div>
+            <div><dt>受付時間</dt><dd>平日 6:00〜18:00</dd></div>
+          </dl>
+        </div>
+      </div>
+      <div>
+        <p>明治の牛乳・ヨーグルトを中心に、地域の皆さまへ「毎朝の健康習慣」をお届けしています。ご家族に合わせた銘柄・本数のご提案も可能です。</p>
+        <div class="hero-cta" style="margin-top:12px">
+          <a class="btn cta-orange" href="html/contact.html#apply">✎ 新規お申込み</a>
+          <a class="btn ghost" href="html/company.html">会社案内をみる</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 申込CTA（横長バナー） ===== -->
+<section class="sec-narrow">
+  <div class="wrap">
+    <div class="banner">
+      <img src="images/slide1.png" alt="申込イメージ（代替画像）">
+    </div>
+    <div class="hero-cta" style="justify-content:center;margin-top:12px">
+      <a class="btn cta-orange large" href="html/contact.html#apply">✎ カンタンお申込み</a>
+      <a class="btn ghost" href="html/contact.html">問い合わせる</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Footer ===== -->
+<footer class="footer-green">
+  <div class="wrap footer-grid">
+    <div class="footer-brand">
+      <div class="meiji-mark">meiji</div>
+      <div class="footer-title">株式会社 いしばしミルク（Office Sada）</div>
+      <dl class="addr">
+        <div><dt>本社</dt><dd>〒851-2127 長崎県西彼杵郡長与町高田郷</dd></div>
+        <div><dt>TEL</dt><dd><a href="tel:08027992388">080-2799-2388</a></dd></div>
+      </dl>
+    </div>
+    <div class="footer-cta">
+      <a class="btn cta-orange large" href="html/contact.html#apply">✎ 新規お申込み</a>
+      <p class="footer-tellead">お気軽にお問い合わせください</p>
+      <a class="footer-tel" href="tel:08027992388">080-2799-2388</a>
+      <div class="footer-note">（受付時間）平日 6:00〜18:00</div>
+    </div>
+  </div>
+  <div class="wrap copy">Copyright © <span id="y"></span> Office Sada.</div>
+</footer>
+
+<!-- FAB -->
+<a class="fab to-top" href="#top" aria-label="先頭へ">↑</a>
+<a class="fab line" href="https://line.me/R/ti/p/@your-line-id" target="_blank" rel="noopener" aria-label="公式LINEへ">LINE</a>
+
+<!-- ===== Scripts ===== -->
+<script>
+  // ローダー：読み込み完了でフェードアウト
+  window.addEventListener('load', function(){
+    requestAnimationFrame(()=> document.body.classList.add('loaded'));
+  });
+
+  // ハンバーガー開閉
+  (function(){
+    var btn=document.querySelector('.nav-toggle');
+    var panel=document.getElementById('mobileNav'); if(!btn||!panel) return;
+    btn.addEventListener('click', function(){
+      var open=btn.getAttribute('aria-expanded')==='true';
+      btn.setAttribute('aria-expanded', String(!open));
+      panel.hidden=open; panel.classList.toggle('open', !open);
+      document.body.classList.toggle('menu-open', !open);
+    });
+    panel.addEventListener('click', function(e){
+      if(e.target.tagName==='A'){ btn.setAttribute('aria-expanded','false'); panel.hidden=true; panel.classList.remove('open'); document.body.classList.remove('menu-open'); }
+    });
+  })();
+
+  // 簡易スライダー（オート + ドット/矢印）
+  (function(){
+    const slider = document.querySelector('.os-slider');
+    if(!slider) return;
+    const track  = slider.querySelector('.os-slides');
+    const slides = Array.from(slider.querySelectorAll('.os-slide'));
+    const dots   = Array.from(slider.querySelectorAll('.os-dot'));
+    const prev   = slider.querySelector('.os-prev');
+    const next   = slider.querySelector('.os-next');
+    const interval = Number(slider.dataset.interval||4200);
+
+    let idx=0, timer=null;
+    const go = (i)=> {
+      idx=(i+slides.length)%slides.length;
+      track.style.transform = `translateX(${-100*idx}%)`;
+      dots.forEach((d,j)=> d.setAttribute('aria-selected', String(j===idx)));
+    };
+    const auto=()=>{ stop(); timer=setInterval(()=>go(idx+1), interval); };
+    const stop=()=> timer && (clearInterval(timer), timer=null);
+
+    dots.forEach((d,i)=> d.addEventListener('click', ()=>{ go(i); auto(); }));
+    prev.addEventListener('click', ()=>{ go(idx-1); auto(); });
+    next.addEventListener('click', ()=>{ go(idx+1); auto(); });
+
+    slider.addEventListener('mouseenter', stop);
+    slider.addEventListener('mouseleave', auto);
+    go(0); auto();
+  })();
+
+  // 年号
+  document.getElementById('y').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>お問い合わせ</title>
+    <link rel="stylesheet" href="../css/c1.css"> <!-- 既存のCSSを適用 -->
+    <link rel="icon" type="image/logo.png" href="image/logo.png">
+</head>
+<body>
+    <header>
+        <h1>お問い合わせ</h1>
+    </header>
+    
+    <main>
+        <section class="contact-container">
+            <form action="contact.php" method="POST" class="contact-form">
+                <label for="name">お名前 (必須):</label>
+                <input type="text" id="name" name="name" required>
+
+                <label for="email">メールアドレス (必須):</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="subject">件名:</label>
+                <select id="subject" name="subject">
+                    <option value="question">ご質問</option>
+                    <option value="order">注文について</option>
+                    <option value="support">サポート</option>
+                </select>
+
+                <label for="message">お問い合わせ内容:</label>
+                <textarea id="message" name="message" rows="5" required></textarea>
+
+                <button type="submit">送信</button>
+            </form>
+        </section>
+    </main>
+</body>
+</html>

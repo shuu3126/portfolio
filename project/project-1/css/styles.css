@@ -1,0 +1,869 @@
+@font-face {
+  font-family: 'Keifont';
+  src: url('../fonts/keifont.ttf') format('truetype'); /* ファイル名は実際のものに合わせて */
+  font-weight: normal;
+  font-style: normal;
+}
+/* ========== Base (Light) ========== */
+:root{
+  --bg:#ffffff;
+  --surface:#f7f8fb;
+  --card:#ffffff;
+  --text:#111215;
+  --muted:#606778;
+
+  /* バナーの色味に寄せて微調整 */
+  --accent:#8a7aff;     /* 旧: #6b5cff */
+  --accent-2:#4fd1e6;   /* 旧: #06b6d4 */
+  --grad: linear-gradient(90deg, #8a7aff 0%, #6aa7f2 55%, #4fd1e6 100%);
+
+  --radius:16px;
+  --container:1200px;
+  --shadow:0 10px 30px rgba(16,24,40,.08);
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  color:var(--text);
+  background:#fff;
+  font:16px/1.7 system-ui,-apple-system,Segoe UI,Roboto,Inter,Helvetica,Arial,sans-serif;
+}
+
+/* ===== App Fade-in (本体のみ) ===== */
+.app{opacity:0; transition:opacity 1.5s ease;}  /* ← 1.5s フェード */
+.app.visible{opacity:1}
+
+/* Utilities */
+.container{width:min(100% - 32px, var(--container)); margin-inline:auto}
+.section{padding:72px 0}
+.section-alt{background:linear-gradient(180deg, rgba(17,17,17,0.04), transparent 40%)}
+.section-head{display:flex; align-items:center; justify-content:space-between; gap:16px; margin-bottom:24px}
+.section-title{margin:0; font-size: clamp(20px, 3vw, 28px); letter-spacing:.02em}
+.section-more{color:var(--muted); text-decoration:none}
+.section-more:hover{color:var(--text)}
+
+/* Buttons */
+.btn{
+  display:inline-flex; align-items:center; justify-content:center;
+  gap:.5rem; padding:.75rem 1.1rem; border-radius:999px;
+  border:1px solid transparent; text-decoration:none; cursor:pointer; font-weight:600;
+  transition:transform .06s ease, background .2s ease, border-color .2s ease, color .2s ease;
+}
+.btn:active{transform:translateY(1px)}
+.btn-primary{background:var(--accent); color:#fff; box-shadow:0 6px 14px rgba(138,122,255,.22)}
+.btn-primary:hover{filter:brightness(1.05)}
+.btn-ghost{background:#fff; border:1px solid rgba(17,17,17,.12); color:var(--text)}
+.btn-ghost:hover{background:#f5f5f8}
+.btn-lg{padding:1rem 1.25rem; font-size:1.05rem}
+
+/* ========== Header ========== */
+.site-header{
+  position:sticky; top:0; z-index:50;
+  backdrop-filter:saturate(140%) blur(8px);
+  background:rgba(255,255,255,.75);
+  border-bottom:1px solid rgba(17,17,17,.06);
+}
+.header-inner{display:flex; align-items:center; justify-content:space-between; padding:14px 0}
+.brand{display:flex; align-items:center; gap:.6rem; color:var(--text); text-decoration:none; font-weight:800; letter-spacing:.04em}
+.brand-mark{display:grid; place-items:center; width:28px; height:28px; border-radius:8px; background:linear-gradient(135deg,var(--accent),var(--accent-2)); color:#fff; font-weight:900}
+.brand--footer .brand-mark{width:24px; height:24px}
+.brand-text{font-size:1rem}
+.brand-logo {width:50px; height:auto; display:block}
+.nav{display:flex; gap:1rem}
+.nav a{color:var(--muted); text-decoration:none; font-weight:600}
+.nav a:hover{color:var(--text)}
+
+/* ========== Mobile Nav ======= */
+.nav-toggle{
+  display:inline-flex; flex-direction:column; justify-content:center; gap:5px;
+  width:40px; height:40px; border:0; background:#fff; border:1px solid rgba(17,17,17,.12);
+  border-radius:10px; cursor:pointer;
+}
+.nav-toggle span{display:block; width:18px; height:2px; background:#111; margin:0 auto; transition:transform .2s ease, opacity .2s ease}
+@media (min-width:860px){ .nav-toggle{display:none} }
+
+.nav{
+  position:fixed; inset:64px 16px auto 16px;
+  background:#fff; border:1px solid rgba(17,17,17,.12); border-radius:14px; box-shadow:0 20px 40px rgba(16,24,40,.12);
+  padding:12px; display:grid; gap:8px; transform:translateY(-10px); opacity:0; pointer-events:none; transition:opacity .16s ease, transform .16s ease;
+}
+.nav a{padding:10px 12px; border-radius:10px}
+.nav a:hover{background:#f5f5f8}
+
+@media (min-width:860px){
+  .nav{position:static; display:flex; gap:1rem; transform:none; opacity:1; pointer-events:auto; background:transparent; border:0; box-shadow:none; padding:0}
+  .nav a{padding:0}
+}
+body.nav-open .nav{opacity:1; pointer-events:auto; transform:translateY(0)}
+body.nav-open .nav-toggle span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+body.nav-open .nav-toggle span:nth-child(2){opacity:0}
+body.nav-open .nav-toggle span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+
+/* ========== Hero ========== */
+.hero{position:relative; min-height:95vh; display:grid; place-items:center; text-align:center; overflow:hidden}
+.hero-bg{
+  position:absolute; inset:0;
+  /* 星ぽい粒子をほんのり + コロっぽいグラデ。画像なしでも綺麗に見える構成 */
+  background:
+    radial-gradient(2px 2px at 12% 28%, rgba(255,255,255,.85) 40%, transparent 41%) repeat,
+    radial-gradient(2px 2px at 88% 20%, rgba(255,255,255,.80) 40%, transparent 41%) repeat,
+    radial-gradient(1.6px 1.6px at 89% 74%, rgba(255,255,255,.65) 40%, transparent 41%) repeat,
+    var(--grad);
+  background-size:
+    140px 140px, 180px 180px, 160px 160px,
+    100% 100%;
+  background-position:
+    10% 30%, 92% 18%, 88% 78%,
+    center;
+  background-repeat:no-repeat;
+  z-index:-1;
+  filter:saturate(110%);
+}
+.hero-inner{padding:64px 0}
+.hero-title{margin:0 0 8px; font-family: 'Keifont', sans-serif; font-size: clamp(40px, 8vw, 90px); letter-spacing:.06em; font-weight:900; text-shadow:0 2px 14px rgba(0,0,0,.22); color: #fff; white-space: nowrap}
+
+/* === サブタイトル：テキスト幅ピッタリの箱（左→右スライド、濃い文字） === */
+.hero-lead{
+  position: relative;
+  z-index: 0;                    /* ← テキスト側の積層基準 */
+  display: inline-block;         /* テキスト実幅に揃える */
+  font-family: 'nicokaku', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: .02em;
+  margin: 0 auto 24px;
+  color: #2f3340;                /* 濃い文字色で読みやすく */
+  max-width: 720px;
+  white-space: nowrap;
+
+  /* 初期：非表示（アニメ前） */
+  opacity: 0;
+  transform: translateY(0);      /* 下から動いて見えないようYは0 */
+}
+
+.hero-lead::before{
+  content:"";
+  position: absolute;
+  top: -8px; bottom: -8px;       /* 上下だけ余白 */
+  left: 0; right: 0;
+  border-radius: 0;              /* 四角 */
+  background: rgba(255,255,255,.98);
+  box-shadow: 0 10px 30px rgba(16,24,40,.12), inset 0 0 0 1px rgba(17,17,17,.08);
+
+  /* ← テキストの背面に置く（これが無いと文字が隠れる） */
+  z-index: -1;
+
+  /* 左→右に伸びる */
+  transform-origin: left center;
+  transform: scaleX(0) translateX(-8px);
+  opacity: 0;
+}
+
+/* page-ready が付いたらアニメ開始（開始を少し遅くした） */
+.page-ready .hero-lead::before{
+  animation: leadBoxReveal .75s cubic-bezier(.22,.61,.36,1) .60s forwards;  /* 0.60s 遅延 */
+}
+.page-ready .hero-lead{
+  animation: leadTextIn .45s ease-out 1.15s forwards;  /* ボックス後、1.15s 遅延で表示 */
+}
+
+/* 左→右に伸びる */
+@keyframes leadBoxReveal{
+  0%   { transform: scaleX(0) translateX(-8px); opacity:.0; }
+  50%  { opacity:1; }
+  100% { transform: scaleX(1) translateX(0);   opacity:1; }
+}
+/* 文字フェードのみ */
+@keyframes leadTextIn{
+  0%   { opacity:0; }
+  100% { opacity:1; }
+}
+
+/* === ヒーローボタン：右下固定（PC表示想定） === */
+.hero-actions{
+  position:absolute;
+  right: clamp(16px, 5vw, 48px);
+  bottom: clamp(16px, 5vw, 40px);
+  display:flex;
+  gap:12px;
+  justify-content:flex-end;
+  flex-wrap:wrap;
+}
+
+/* ===== Hero 2カラム ===== */
+.hero-split{
+  display:grid;
+  align-items:center;
+  gap:28px;
+}
+@media (min-width: 980px){
+  .hero-split{
+    grid-template-columns: 1fr 1fr;   /* 左右2カラム */
+  }
+}
+
+/* 右側テキストを右寄せ */
+.hero-copy{
+  text-align:center;
+}
+@media (min-width:980px){
+  .hero-copy{
+    text-align:right;
+    justify-self:end;   /* 右端に揃える */
+  }
+}
+
+/* ===== スマホモック ===== */
+.phone{
+  width:min(460px, 90%);
+  aspect-ratio: 9 / 19.5;
+  margin:0;
+  position:relative;
+  border-radius:36px;
+  padding:10px;
+  background:#0b0b10;
+  box-shadow:
+    0 20px 60px rgba(0,0,0,.25),
+    inset 0 0 0 2px rgba(255,255,255,.06);
+}
+
+/* PC（980px以上）では左寄せ＋上にずらす */
+@media (min-width:980px){
+  .phone{
+    justify-self: start;     /* 左寄せ */
+    margin-left: -40px;      /* 左に寄せたい分を調整 */
+    margin-top: -40px;       /* 上に寄せたい分を調整 */
+  }
+}
+
+/* 画面（動画） */
+.phone-screen{
+  width:100%;
+  height:100%;
+  display:block;
+  border-radius:26px;
+  object-fit:cover;        /* 縦横比を保ってトリミング */
+  background:#000;
+}
+
+/* ノッチ（飾り：任意） */
+.phone::before{
+  content:"";
+  position:absolute;
+  top:8px; left:50%;
+  transform:translateX(-50%);
+  width:34%;
+  height:16px;
+  background:#0b0b10;                /* モックのベゼル色と同じ */
+  border-radius:0 0 12px 12px;
+  z-index: 10;                        /* ★ 動画や装飾より前面 */
+  pointer-events:none;
+  box-shadow: 0 1px 4px rgba(0,0,0,.25) inset;
+}
+
+/* ホームインジケータ（下の白いバー） */
+.phone::after{
+  content:"";
+  position:absolute;
+  bottom:20px; left:50%;
+  transform:translateX(-50%);
+  width: 38%;                         /* 端末っぽい比率 */
+  max-width: 180px;
+  height: 5px;
+  border-radius: 999px;
+  background: rgba(255,255,255,.9);   /* 白めで視認性UP */
+  z-index: 10;                        /* ★ 動画より前面 */
+  pointer-events:none;
+  box-shadow: 0 2px 8px rgba(0,0,0,.25);
+}
+
+.phone .shorts{ position:relative; z-index: 1; }
+
+/* ==== Shorts in phone ==== */
+.shorts-item{
+  position: relative;
+  width: 100%;
+  height: 100%;
+  flex: 0 0 100%;   /* 1枚がちょうど1画面ぶん */
+}
+/* 念のためトラック自身も高さを持たせておく */
+.shorts-track{ height:100%; }
+.phone .shorts{
+  position:relative;
+  width:100%; height:100%;
+  border-radius:26px;
+  overflow:hidden;
+  background:#000;
+}
+.shorts-track{
+  position:absolute; inset:0;
+  display:flex; flex-direction:column;
+  transform: translateY(0);
+  transition: transform .6s cubic-bezier(.22,.61,.36,1);
+}
+.shorts-item .shorts-video{
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;   /* ← 全体を収める */
+  background: #000;      /* 上下や左右に余白が出たとき黒で埋める */
+}
+
+/* 右側の縦UI（♡/コメント/シェア） */
+.shorts-ui{
+  position:absolute;
+  right:10px; bottom:14%;
+  display:flex; flex-direction:column; align-items:center; gap:10px;
+  color:#fff; text-shadow:0 2px 8px rgba(0,0,0,.55);
+  pointer-events:auto; /* クリック可 */
+}
+.s-btn{
+  width:34px; height:34px;        /* ← 42px → 34px に縮小 */
+  border-radius:10px;
+  background:rgba(255,255,255,.12);
+  border:1px solid rgba(255,255,255,.28);
+  display:grid; place-items:center;
+  cursor:pointer;
+  backdrop-filter: blur(2px);
+  transition: transform .12s ease, background .2s ease;
+  font-size:16px; line-height:1;  /* ← アイコンも20px → 16pxに縮小 */
+}
+.s-btn:active{ transform: scale(.96) }
+
+.s-num{
+  font-size:10px;                 /* ← 少しだけ小さく */
+  opacity:.85;
+  margin-bottom:4px;
+}
+
+/* 装飾がスマホ上に被らないように（もし必要なら） */
+.phone { z-index: 3; }
+
+.scroll-indicator{
+  position:absolute;
+  left: clamp(12px, 2vw, 32px);
+  top: 60%;
+  transform: translateY(-50%);
+  z-index: 5;
+  width: 44px;
+  height: 280px; /* ←長めに */
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:space-between;
+  padding: 16px 0 20px;
+  border-radius: 14px;
+  background: rgba(255,255,255,.96);
+  border: 1px solid rgba(17,17,17,.12);
+  box-shadow:
+    0 14px 30px rgba(16,24,40,.20),
+    0 0 0 1px rgba(255,255,255,.7) inset;
+  backdrop-filter: blur(3px);
+}
+
+.scroll-text{
+  font-size: 13px;   /* ←大きく */
+  letter-spacing: .28em;
+  font-weight: 900;
+  color: #222;       /* 濃いめに */
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  text-align:center;
+  opacity: .95;
+}
+
+.scroll-arrow{
+  width: 20px; height: 20px;     /* ←大きく */
+  border-left: 3px solid #222;   /* ←太く */
+  border-bottom: 3px solid #222;
+  transform: rotate(-45deg);
+  animation: scrollBounce 1.35s ease-in-out infinite;
+  filter: drop-shadow(0 3px 6px rgba(16,24,40,.25));
+}
+
+/* ふわっと下方向を強調するバウンス */
+@keyframes scrollBounce{
+  0%   { transform: translateY(-6px) rotate(-45deg); opacity: .0; }
+  35%  { opacity: 1; }
+  70%  { transform: translateY(8px) rotate(-45deg); opacity: 1; }
+  100% { transform: translateY(12px) rotate(-45deg); opacity: .05; }
+}
+
+/* スマホでは非表示（PC専用） */
+@media (max-width: 979px){
+  .scroll-indicator{ display:none; }
+}
+
+/* ===== Hero内SNSアイコン（Hero限定表示） ===== */
+.hero { position: relative; } /* 既にrelativeならこの行は無視OK */
+
+.hero-social{
+  position: absolute;
+  right: 22px;             /* 右端からの距離 */
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  z-index: 6;              /* ヒーロー内で前面に */
+}
+
+.hero-social a{
+  width: 66px;   /* ← サイズを1.5倍 */
+  height: 66px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius: 50%;
+  background:#fff;
+  color:#333;
+  font-size:33px;   /* ← アイコンサイズも拡大 */
+  text-decoration:none;
+  box-shadow:0 6px 14px rgba(0,0,0,.18);
+  border:1px solid rgba(17,17,17,.08);
+  transition: transform .18s ease, background-color .18s ease, color .18s ease;
+}
+
+.hero-social a:hover{
+  transform: translateY(-3px); /* ← 少しホバー浮きを強調してもOK */
+  background: var(--accent);
+  color:#fff;
+}
+
+/* スクロール表示など他UIと被る場合の微調整（任意） */
+@media (min-width: 1200px){
+  .hero-social{ right: 26px; }
+}
+
+/* スマホでは邪魔になりやすいので非表示（必要なら調整） */
+@media (max-width: 979px){
+  .hero-social{ display:none; }
+}
+
+/* ===== Hero decoration (控えめ・軽量) ===== */
+.hero-decor{
+  position:absolute;
+  inset:0;
+  z-index:0;                 /* .hero-bg(-1) の上、本文の下 */
+  pointer-events:none;
+  overflow:hidden;
+}
+
+.phone{ position:relative; z-index:2; }
+
+/* 色をアクセント系に寄せる（薄め） */
+:root{
+  --decor-white: rgba(255,255,255,.9);
+  --decor-soft : rgba(255,255,255,.55);
+  --decor-faint: rgba(255,255,255,.28);
+}
+
+/* 小さな点(星) — きらっと微妙に明滅&ゆっくり上下 */
+.dot{
+  position:absolute;
+  width:6px; height:6px; border-radius:50%;
+  background: var(--decor-white);
+  box-shadow: 0 0 10px rgba(255,255,255,.55);
+  animation: dotFloat 8s ease-in-out infinite, dotTwinkle 2.6s ease-in-out infinite;
+}
+@keyframes dotFloat{
+  0%,100%{ transform: translateY(-2px) }
+  50%    { transform: translateY( 2px) }
+}
+@keyframes dotTwinkle{
+  0%,100%{ opacity:.85 }
+  50%    { opacity:.55 }
+}
+
+/* 点の配置（PC向け / モバイルは後で間引く） */
+.dot--1{ top:20%; left:12% }
+.dot--2{ top:30%; right:8% }
+.dot--3{ top:65%; left:14% }
+.dot--4{ top:18%; left:52%; width:5px; height:5px }
+.dot--5{ top:75%; right:14%; width:5px; height:5px }
+
+/* 幾何学形 — うっすら回転しながら漂う */
+.geo{
+  position:absolute;
+  opacity:.55;
+  animation: geoDrift 16s ease-in-out infinite;
+}
+.geo-square{ width:16px; height:16px; border:2px solid var(--decor-soft); }
+.geo-tri{
+  width:0; height:0;
+  border-left:10px solid transparent;
+  border-right:10px solid transparent;
+  border-bottom:16px solid var(--decor-soft);
+}
+.geo-circle{ width:12px; height:12px; border-radius:50%; border:2px solid var(--decor-faint); }
+
+@keyframes geoDrift{
+  0%  { transform: translateY(0) rotate(0deg) }
+  50% { transform: translateY(-6px) rotate(9deg) }
+  100%{ transform: translateY(0) rotate(0deg) }
+}
+
+/* 幾何の配置＆個別速度 */
+.geo--a{ top:28%; left:35%; animation-duration: 18s }
+.geo--b{ top:58%; left:62%; animation-duration: 15s }
+.geo--c{ top:42%; left:78%; animation-duration: 20s }
+
+/* ===== 流れ星：固定位置＋ラインに光が流れる（シマー） ===== */
+.meteor{
+  position:absolute;
+  width:160px; height:2px;
+  transform: rotate(-24deg); /* 斜めの角度は維持 */
+  /* ライン本体（薄い白）に、中央の強い光を横方向に流す */
+  background:
+    linear-gradient(90deg, rgba(255,255,255,0) 0%,
+                           rgba(255,255,255,1) 15%,
+                           rgba(255,255,255,0) 30%) 0 0 / 300% 100% no-repeat,
+    linear-gradient(90deg, rgba(255,255,255,.35), rgba(255,255,255,.0));
+  filter: drop-shadow(0 0 8px rgba(255,255,255,.55));
+  opacity:.95;
+  animation: meteorShine var(--dur,3.6s) ease-in-out infinite;
+  animation-delay: var(--delay, 0s);
+  will-change: background-position;
+}
+
+/* 光のハイライトだけが左→右へ往復する */
+@keyframes meteorShine{
+  0%   { background-position: -120% 0, 0 0 }
+  45%  { background-position:  120% 0, 0 0 }
+  100% { background-position: -120% 0, 0 0 }
+}
+
+/* 位置とタイミング（前回の配置を流用） */
+.meteor--1{ top:10%; left:5%;   --dur:3.8s; --delay:.8s }
+.meteor--2{ top:22%; left:28%;  --dur:3.4s; --delay:1.6s }
+.meteor--3{ top:14%; left:52%;  --dur:4.2s; --delay:2.2s }
+.meteor--4{ top:32%; left:8%;   --dur:4.0s; --delay:1.1s }
+
+/* モバイルは負荷を避けて非表示（必要なら外してOK） */
+@media (max-width:979px){
+  .meteor{ display:none }
+}
+
+/* ===== 追加：点（ちょい増量、同じアニメを使う） ===== */
+.dot--6{ top:40%; left:24% }
+.dot--7{ top:52%; right:22% }
+
+/* ===== About（大きいカード + スクロール時に発火） ===== */
+
+/* セクション全体の横幅も少し拡張してカードを大きく見せる */
+.about .container{
+  /* 既存: width:min(100% - 32px, var(--container))
+     → このセクションだけ上限を広げる */
+  width: min(100% - 48px, 1600px);
+  margin-inline:auto;
+}
+
+.about{
+  padding: 140px 0;
+  background: linear-gradient(180deg, rgba(255,255,255,.95), rgba(250,250,255,.9));
+  border-top: 1px solid rgba(17,17,17,.06);
+  border-bottom: 1px solid rgba(17,17,17,.06);
+}
+
+/* ← アニメの自動発火はやめ、初期状態だけ定義 */
+.about-card{
+  background:#fff;
+  border:1px solid rgba(17,17,17,.08);
+  border-radius:24px;
+  box-shadow:0 16px 40px rgba(16,24,40,.12);
+
+  /* カードをさらに大きく */
+  max-width: 1500px;     /* 好みで 1600px まで上げてもOK */
+  margin:0 auto;
+
+  padding: clamp(36px, 5.5vw, 88px);
+  min-height: clamp(560px, 72vh, 860px);
+
+  /* スクロール発火用の初期値（非表示） */
+  opacity: 0;
+  transform: translateY(28px);
+  will-change: transform, opacity;
+  transition: opacity .7s ease, transform .7s cubic-bezier(.22,.61,.36,1);
+}
+/* 交差したら .in を付ける（JSが付与） */
+.about-card.in{
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.about-grid{
+  display:grid;
+  gap: clamp(24px, 4vw, 48px);
+}
+@media (min-width:980px){
+  .about-grid{
+    grid-template-columns: 1fr 1fr;
+    align-items:center;
+  }
+}
+.about-left{ padding-right: clamp(16px, 3.5vw, 56px); }
+.about-right{ padding-left:  clamp(16px, 3.5vw, 56px); }
+
+.about-title{ font-size: clamp(40px, 6vw, 72px); }
+.about-copy-ja{ font-size: clamp(22px, 3.2vw, 28px); }
+
+/* 好みで右カラムの行間・注釈 */
+.about-right p{ margin:0 0 1rem; color:#3b4252; line-height:1.9; }
+.about-cta-note{
+  margin-top:1.2rem; padding:12px 14px;
+  border:1px dashed rgba(17,17,17,.12); border-radius:12px;
+  background:rgba(250,250,255,.7);
+}
+
+/* OSの「動きを減らす」への配慮（任意） */
+@media (prefers-reduced-motion: reduce){
+  .about-card{ transition:none }
+}
+
+/* ========== Cards / News ========== */
+.grid{display:grid; gap:16px}
+.grid-3{grid-template-columns:repeat(1,1fr)}
+.grid-4{grid-template-columns:repeat(2,1fr)}
+@media (min-width:700px){
+  .grid-3{grid-template-columns:repeat(3,1fr)}
+  .grid-4{grid-template-columns:repeat(4,1fr)}
+}
+.card{background:var(--card); border:1px solid rgba(17,17,17,.08); border-radius:var(--radius); overflow:hidden; box-shadow:var(--shadow)}
+.card-body{display:block; color:inherit; text-decoration:none}
+.card-thumb{aspect-ratio:16/9; background:
+  linear-gradient(135deg, rgba(138,122,255,.25), rgba(79,209,230,.18)),
+  linear-gradient(180deg, rgba(17,17,17,.04), rgba(17,17,17,.0));
+}
+.card-meta{display:flex; align-items:center; gap:8px; padding:12px 16px 0; color:var(--muted); font-size:.9rem}
+.tag{padding:2px 8px; border:1px solid rgba(17,17,17,.12); border-radius:999px}
+.card-title{margin:6px 16px 4px; font-size:1.05rem}
+.card-text{margin:0 16px 16px; color:#3b4252}
+
+/* ========== Talent Slider (16:9) ========== */
+.talent-slider{position:relative; max-width:100%; border-radius:var(--radius); box-shadow:var(--shadow); overflow:hidden; border:1px solid rgba(17,17,17,.08)}
+.talent-viewport{position:relative; width:100%; aspect-ratio:16/9; overflow:hidden; background:#f2f4f8}
+.talent-slides{display:flex; width:200%; height:100%; transform:translateX(0); transition:transform .6s cubic-bezier(.22,.61,.36,1)}
+.talent-slide{flex:0 0 100%; position:relative; display:grid; place-items:center}
+.talent-slide img{width:100%; height:100%; object-fit:cover; display:block}
+.talent-caption{
+  position:absolute; left:16px; bottom:16px;
+  background:rgba(255,255,255,.72); backdrop-filter:blur(6px);
+  color:#111; padding:10px 12px; border-radius:12px; border:1px solid rgba(17,17,17,.12);
+  font-weight:700;
+}
+
+/* slider controls */
+.slider-controls{position:absolute; inset:auto 8px 8px auto; display:flex; gap:8px}
+.slider-btn{
+  width:36px; height:36px; border-radius:999px; border:1px solid rgba(17,17,17,.12);
+  background:#fff; display:grid; place-items:center; cursor:pointer;
+  box-shadow:0 6px 12px rgba(16,24,40,.08);
+}
+.slider-dots{position:absolute; left:12px; bottom:12px; display:flex; gap:6px}
+.slider-dot{
+  width:8px; height:8px; border-radius:999px; background:rgba(17,17,17,.25); border:1px solid rgba(17,17,17,.22)
+}
+.slider-dot.is-active{background:var(--accent)}
+
+/* ========== CTA (Audition) ========== */
+.cta{background:linear-gradient(180deg, rgba(138,122,255,.10), rgba(79,209,230,.08)); border-block:1px solid rgba(17,17,17,.08)}
+.cta-inner{display:flex; flex-direction:column; align-items:flex-start; gap:16px}
+.cta-copy h2{margin:0 0 6px; font-size: clamp(22px, 3.4vw, 32px)}
+.cta-copy p{margin:0; color:#3b4252}
+.cta-actions{display:flex; gap:12px; flex-wrap:wrap}
+@media (min-width:780px){
+  .cta-inner{flex-direction:row; align-items:center; justify-content:space-between}
+}
+
+/* ========== Footer ========== */
+.site-footer{border-top:1px solid rgba(17,17,17,.08); background:#fbfbfe}
+.footer-inner{display:grid; gap:24px; padding:32px 0}
+@media (min-width:760px){ .footer-inner{grid-template-columns:2fr 1fr 1fr} }
+.footer-desc{margin:.5rem 0 0; color:var(--muted)}
+.footer-col h4{margin:0 0 8px}
+.footer-links{list-style:none; padding:0; margin:0; display:grid; gap:8px}
+.footer-links a{color:var(--muted); text-decoration:none}
+.footer-links a:hover{color:var(--text)}
+.footer-copy{padding:12px 0 24px; color:#6b7280; text-align:center; border-top:1px dashed rgba(17,17,17,.12)}
+.footer-actions{display:flex; gap:10px; flex-wrap:wrap; margin-top:12px}
+.footer-logo {
+  width:75px;
+  height:auto;
+  display:block;
+}
+
+/* ========== Preloader (ロゴ＆バー) ========== */
+.preloader{
+  position:fixed; inset:0; z-index:9999;
+  display:grid; place-items:center;
+  background:#ffffff; /* 真っ白のまま */
+  transition:opacity .35s ease, visibility .35s ease;
+}
+.preloader.hidden{opacity:0; visibility:hidden}
+.preloader-inner{display:flex; flex-direction:column; align-items:center; gap:16px; width:min(92%,360px)}
+.preloader-logo {
+  width:100px;
+  height:auto;
+  display:block;
+}
+.progress{width:100%; height:8px; border-radius:999px; background:#eef0f6; overflow:hidden; border:1px solid rgba(17,17,17,.08)}
+.progress > span{
+  display:block; width:0%; height:100%;
+  background:linear-gradient(90deg, var(--accent), var(--accent-2));
+  transition: width .2s ease;
+}
+
+/* =========================
+        フォームUIを統一
+   ========================= */
+.field{display:flex; flex-direction:column; gap:6px}
+.field span{font-weight:600}
+
+input[type="text"],
+input[type="email"],
+input[type="url"],
+select,
+textarea{
+  width:100%;
+  padding:12px 14px;
+  border-radius:12px;
+  border:1px solid rgba(17,17,17,.16);
+  background:#fff;
+  color:var(--text);
+  font:inherit;
+  -webkit-appearance:none;
+  appearance:none;
+  transition:border-color .15s ease, box-shadow .15s ease, background .15s ease;
+}
+textarea{resize:vertical; min-height:160px}
+input::placeholder, textarea::placeholder{color:#8a91a3}
+
+input:focus, textarea:focus, select:focus{
+  outline:0;
+  border-color:#7c86ff;
+  box-shadow:0 0 0 3px rgba(107,92,255,.15);
+}
+
+/* select の矢印 */
+select{
+  background-image:
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23606778' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'/></svg>");
+  background-repeat:no-repeat;
+  background-position:right 12px center;
+  background-size:16px 16px;
+  padding-right:40px;
+}
+
+/* チェックボックス */
+.checkbox{display:flex; align-items:center; gap:8px; margin:10px 0 16px}
+.checkbox input{width:18px; height:18px}
+
+/* Contact フォームのカード感を強める */
+.contact-form{background:var(--surface); border:1px solid rgba(17,17,17,.08); border-radius:var(--radius); padding:20px; box-shadow:var(--shadow)}
+.form-grid{display:grid; gap:12px}
+@media (min-width:680px){ .form-grid{grid-template-columns:repeat(2,1fr)} }
+
+/* reCAPTCHA の余白 */
+.g-recaptcha{margin:4px 0 8px}
+
+/* エラーテキスト用（任意） */
+.form-error{color:#d22; font-size:.9rem}
+
+/* ===== Audition: Sub Hero ===== */
+.sub-hero{
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(60% 40% at 50% 0%, rgba(138,122,255,.12), transparent 60%),
+    radial-gradient(40% 30% at 80% 20%, rgba(79,209,230,.10), transparent 60%),
+    #fff;
+  border-bottom: 1px solid rgba(17,17,17,.06);
+}
+.sub-hero-inner{
+  display: grid;
+  gap: 24px;
+  padding: clamp(48px, 8vw, 96px) 0;
+}
+@media(min-width: 980px){
+  .sub-hero-inner{ grid-template-columns: 1.1fr .9fr; align-items: center; }
+}
+.sub-hero-copy .eyebrow{
+  display:inline-block; font-weight:800; letter-spacing:.16em; font-size:.78rem;
+  color: var(--muted); border:1px solid rgba(17,17,17,.1);
+  padding:4px 8px; border-radius:999px; margin-bottom:10px;
+}
+.sub-hero h1{ margin: 4px 0 8px; font-size: clamp(28px, 5.5vw, 48px); font-family:'Keifont', sans-serif; }
+.sub-hero .lead{ margin:0 0 18px; color:#3b4252 }
+.sub-hero-actions{ display:flex; gap:12px; flex-wrap:wrap; }
+
+.sub-hero-art{ position:relative; min-height: 220px; }
+.audition-visual{
+  height: clamp(220px, 36vw, 420px);
+  border-radius: 18px;
+  background:
+    linear-gradient(135deg, rgba(138,122,255,.25), rgba(79,209,230,.20)),
+    radial-gradient(120% 80% at 10% 10%, rgba(255,255,255,.65), transparent 40%),
+    #f4f6ff;
+  border: 1px solid rgba(17,17,17,.08);
+  box-shadow: var(--shadow);
+}
+
+/* ===== Audition: Cards ===== */
+.audition-grid{
+  display:grid;
+  gap: clamp(16px, 3vw, 20px);
+}
+@media(min-width: 860px){
+  .audition-grid{
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+.aud-card{
+  background: var(--card);
+  border:1px solid rgba(17,17,17,.08);
+  border-radius: 16px;
+  padding: clamp(18px, 2.4vw, 22px);
+  box-shadow: var(--shadow);
+}
+.aud-card-title{ margin: 0 0 10px; font-size: 1.1rem }
+.aud-list{ margin:0; padding-left: 1.1em; color:#3b4252 }
+.aud-list li{ margin: .35em 0 }
+
+/* ===== Audition: Timeline ===== */
+.timeline{
+  list-style:none; margin:0; padding:0;
+  display:grid; gap: 14px;
+}
+.time-item{
+  display:grid; grid-template-columns: auto 1fr; gap:12px;
+  align-items:flex-start;
+  background:#fff; border:1px solid rgba(17,17,17,.08);
+  border-radius:14px; padding:14px 16px; box-shadow:var(--shadow);
+}
+.time-badge{
+  display:inline-grid; place-items:center;
+  width:70px; height:70px; border-radius:12px;
+  background:linear-gradient(135deg, var(--accent), var(--accent-2));
+  color:#fff; font-weight:800;
+}
+.time-body h4{ margin:.1rem 0 .2rem; font-size:1.05rem }
+.time-body p{ margin:0; color:#3b4252 }
+
+/* ===== Audition: FAQ ===== */
+.faq{ display:grid; gap:10px }
+.faq-item{
+  border:1px solid rgba(17,17,17,.1); border-radius:12px; background:#fff;
+  box-shadow: var(--shadow); overflow:hidden;
+}
+.faq-item summary{
+  cursor:pointer; list-style:none; padding:14px 16px; font-weight:700;
+}
+.faq-item[open] summary{ background: #f7f8fb }
+.faq-item .faq-body{ padding: 0 16px 14px; color:#3b4252 }
+
+/* ===== Audition: CTA tune ===== */
+.aud-cta .cta-copy p{ color:#3b4252 }

@@ -1,0 +1,303 @@
+/* ✅ グローバルリセット */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f8f8;
+}
+
+/* ✅ ヘッダー全体のレイアウト調整 */
+.header-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* ロゴを左、カートボタンを右 */
+    padding: 10px 20px;
+    width: 100%;
+    background-color: white;
+}
+
+/* ✅ ロゴの調整 */
+.logo img {
+    max-width: 100px;
+    height: auto;
+}
+
+/* ✅ カートボタンの位置調整（右上固定） */
+.cart-button {
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 22px;
+    color: gray;
+    z-index: 1000;
+}
+/* ✅ LINEボタン（干渉をなくして別管理） */
+#floating-button-root {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: auto;
+}
+
+/* ✅ クリック範囲を画像のみに制限 */
+#floating-button-root button {
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: auto;
+    height: auto;
+}
+
+/* ✅ LINEアイコンのサイズ */
+#floating-button-root img {
+    width: 60px;
+    height: auto;
+    cursor: pointer;
+}
+.user-menu {
+    position: absolute;  /* 絶対配置 */
+    right: 78px;  /* 画面の右端から20pxの位置に配置 */
+    top: 30px; /* ヘッダー内の位置調整 */
+}
+
+#user-icon {
+    font-size: 30px;
+    cursor: pointer;
+    color: #333; /* アイコンの色 */
+    margin-left: 15px; /* カートとの間隔 */
+}
+
+/* ✅ スライド全体のコンテナ */
+.slide-container {
+    width: 100%;
+    max-width: 400px; /* ✅ スマホにフィットするサイズ */
+    margin: 0 auto; /* ✅ 中央配置 */
+    overflow: hidden;
+    position: relative;
+}
+
+/* ✅ スライドのラッパー */
+.slide-wrapper {
+    display: flex;
+    width: 300%; /* ✅ 3枚のスライドを横並び */
+    transition: transform 0.5s ease-in-out;
+}
+
+/* ✅ 各スライド画像 */
+.slide {
+    width: 100%;
+    flex: 0 0 100%;
+    object-fit: cover; /* ✅ 画像サイズを適切に調整 */
+    display: block;
+}
+
+.after-slide {
+    display: flex;
+    flex-direction: column; /* タイトルを上に配置 */
+    align-items: center;
+    padding: 80px 20px;
+    width: 100%;
+}
+
+/* ✅ タイトルのデザイン */
+.after-slide h2 {
+    text-align: center;
+    font-size: 23px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+/* ✅ 画像とテキストを横並びにする */
+.after-slide-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px; /* 画像とテキストの間隔 */
+    width: 100%;
+    max-width: 400px; /* 画面の中央に適切に配置 */
+}
+
+/* ✅ 画像の調整（左側に配置） */
+.after-slide img {
+    width: 45%;
+    max-width: 200px;
+    height: auto;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+/* ✅ テキストエリア（右側に配置） */
+.banner-text {
+    width: 50%;
+    text-align: left;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+/* ✅ 箇条書きリストのデザイン */
+.banner-text ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* ✅ チェックマークの調整 */
+.banner-text ul li {
+    position: relative;
+    padding-left: 20px;
+    font-size: 10px;
+    margin-bottom: 8px;
+}
+
+/* ✅ チェックマークを小さく */
+.banner-text ul li::before {
+    content: "✔";
+    position: absolute;
+    left: 0;
+    color: #007bff;
+    font-size: 10px;
+}
+
+/* ✅ スマホ専用調整 */
+@media screen and (max-width: 480px) {
+    .after-slide-content {
+        flex-direction: row; /* 横並びを維持 */
+        gap: 5px;
+    }
+
+    .after-slide img {
+        width: 50%;
+    }
+
+    .banner-text {
+        width: 50%;
+        font-size: 12px;
+    }
+}
+
+
+/* ✅ 商品一覧（グリッドで2列表示） */
+.product-list,
+.product-list2 {
+    text-align: center;
+    padding: 20px;
+}
+
+.products,
+.products2 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+    padding: 10px;
+}
+
+.product,
+.product2 {
+    background: white;
+    border-radius: 10px;
+    padding: 10px;
+    width: 100%;
+    text-align: center;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 320px;
+}
+
+.product img,
+.product2 img {
+    max-width: 100%;
+    border-radius: 10px;
+}
+
+/* ✅ フッター */
+footer {
+    text-align: center;
+    background: #222;
+    color: white;
+    padding: 20px;
+}
+
+.footer-links a {
+    color: white;
+    font-size: 15px;
+    margin: 5px;
+    text-decoration: none;
+}
+
+/* ✅ スマホ用メディアクエリ */
+@media screen and (max-width: 768px) {
+    /* 商品詳細ページ */
+    #product-container {
+        flex-direction: column;
+        align-items: center;
+        width: 95%;
+        padding: 15px;
+    }
+
+    .product-image img {
+        max-width: 90%;
+        height: auto;
+    }
+
+    .product-info {
+        margin-left: 0;
+        text-align: center;
+        width: 100%;
+    }
+
+    .product-info button {
+        align-self: center;
+        width: 90%;
+        margin-top: 10px;
+    }
+
+    /* カートページ */
+    #cart-container {
+        width: 95%;
+        padding: 15px;
+    }
+
+    table {
+        display: block;
+        width: 100%;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+    .cart-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 10px;
+    }
+
+    .remove-btn {
+        display: block;
+        margin: 10px auto;
+    }
+
+    #checkout-btn {
+        width: 90%;
+        font-size: 18px;
+        padding: 15px;
+    }
+}

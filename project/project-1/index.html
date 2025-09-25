@@ -1,0 +1,616 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <!-- SEO 基本 -->
+  <title>CORO PROJECT | VTuber事務所公式サイト</title>
+  <meta name="description" content="CORO PROJECTはVTuberの発掘・育成・配信支援を行うプロダクションです。最新ニュース、所属タレント情報、オーディションのご案内を掲載しています。">
+
+  <!-- Canonical -->
+  <link rel="canonical" href="https://coroproject.jp/">
+
+  <!-- OGP -->
+  <meta property="og:site_name" content="CORO PROJECT">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="CORO PROJECT | VTuber事務所公式サイト">
+  <meta property="og:description" content="CORO PROJECTはVTuberの発掘・育成・配信支援を行うプロダクションです。最新ニュース、所属タレント情報、オーディションのご案内を掲載しています。">
+  <meta property="og:url" content="https://coroproject.jp/">
+  <meta property="og:image" content="https://coroproject.jp/images/ogp.png">
+
+  <!-- Twitterカード -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="CORO PROJECT | VTuber事務所公式サイト">
+  <meta name="twitter:description" content="CORO PROJECTはVTuberの発掘・育成・配信支援を行うプロダクションです。最新ニュース、所属タレント情報、オーディションのご案内を掲載しています。">
+  <meta name="twitter:image" content="https://coroproject.jp/images/ogp.png">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/styles.css">
+
+  <!-- ✅ ファビコン -->
+  <link rel="icon" type="image/png" href="images/logo.png">
+  <link rel="apple-touch-icon" href="images/logo.png">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- Smartphone redirect (desktop index.html にだけ入れる) -->
+  <script>
+  (function () {
+    // ?desktop=1 で“デスクトップを強制”できるようにする（記憶もする）
+    const params = new URLSearchParams(location.search);
+    if (params.get('desktop') === '1') {
+      try { localStorage.setItem('forceDesktop', '1'); } catch (_) {}
+    }
+    if (localStorage.getItem('forceDesktop') === '1') return; // 強制時はリダイレクトしない
+
+    // すでに /m/ 配下なら何もしない（ループ防止）
+    if (location.pathname.indexOf('/m/') !== -1) return;
+
+    // 画面幅ベースの簡易判定（必要なら閾値を調整：980px=あなたのブレークポイントに合わせてある）
+    const isSmall = window.matchMedia('(max-width: 979px)').matches
+                || (('ontouchstart' in window) && screen.width <= 820); // 補助的なタッチ端末チェック
+
+    if (isSmall) {
+      // 現在のディレクトリを基準に相対パスで /m/ へ（ハッシュは維持）
+      var baseDir = location.pathname.replace(/\/[^\/]*$/, '/');
+      var dest = baseDir + 'm/index.html' + (location.hash || '');
+      location.replace(dest); // 履歴を汚さない
+    }
+  })();
+  </script>
+</head>
+<body>
+<!-- ===== Preloader: ロゴ＆バー ===== -->
+<div id="preloader" class="preloader" role="status" aria-live="polite">
+  <div class="preloader-inner">
+    <img src="images/logo.png" alt="CORO PROJECT" class="preloader-logo">
+    <div class="progress" aria-label="読み込み中">
+      <span id="bar"></span>
+    </div>
+    <small style="color:#6b7280">Loading…</small>
+  </div>
+</div>
+
+  <!-- ===== App（本体） ===== -->
+  <div id="app" class="app">
+    <!-- ===== Header ===== -->
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="brand" href="#">
+          <img src="images/toukalogo.png" alt="CORO PROJECT ロゴ" class="brand-logo">
+          <span class="brand-text">CORO PROJECT</span>
+        </a>
+        <!-- モバイル用トグル -->
+        <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="siteNav" aria-label="メニューを開く">
+          <span></span><span></span><span></span>
+        </button>
+
+        <nav class="nav" id="siteNav" aria-label="メインナビゲーション">
+          <a href="#news">News</a>
+          <a href="#talents">Talents</a>
+          <a href="html/audition.html">Audition</a>
+          <!-- Contactは専用ページに移行（ヘッダーから外す or 下記で戻してもOK） -->
+          <!-- <a href="./contact.html">Contact</a> -->
+        </nav>
+      </div>
+    </header>
+    <main>
+      <!-- ===== Hero ===== -->
+      <section class="hero">
+        <div class="hero-bg" aria-hidden="true"></div>
+        <div class="container hero-inner hero-split">
+        <!-- 左：スマホモック＋ショート動画 -->
+          <div class="phone">
+            <div class="shorts">
+              <div class="shorts-track" id="shortsTrack">
+                <!-- 1本目 -->
+                <section class="shorts-item">
+                  <video playsinline muted preload="auto" class="shorts-video" src="https://drive.google.com/file/d/1HgPEDsRWf4f3-ZhduY3W3Ta0EIoFKymL/view?usp=drive_link"></video>
+                  <aside class="shorts-ui">
+                    <button class="s-btn" aria-label="Like">♡</button><span class="s-num">1.2k</span>
+                    <button class="s-btn" aria-label="Comment">💬</button><span class="s-num">128</span>
+                    <button class="s-btn" aria-label="Share">↗</button><span class="s-num">Share</span>
+                  </aside>
+                </section>
+
+                <!-- 2本目 -->
+                <section class="shorts-item">
+                  <video playsinline muted preload="auto" class="shorts-video" src="https://drive.google.com/file/d/1BCrAgo_h-eAPWtEdYdYoYSD7YRJO52NA/view?usp=drive_link"></video>
+                  <aside class="shorts-ui">
+                    <button class="s-btn">♡</button><span class="s-num">3.4k</span>
+                    <button class="s-btn">💬</button><span class="s-num">89</span>
+                    <button class="s-btn">↗</button><span class="s-num">Share</span>
+                  </aside>
+                </section>
+
+                <!-- 3本目 -->
+                <section class="shorts-item">
+                  <video playsinline muted preload="auto" class="shorts-video" src="https://drive.google.com/file/d/14NZdRFDJcVd4daZIQymZ7lcnaGAk8yph/view?usp=drive_link"></video>
+                  <aside class="shorts-ui">
+                    <button class="s-btn">♡</button><span class="s-num">987</span>
+                    <button class="s-btn">💬</button><span class="s-num">41</span>
+                    <button class="s-btn">↗</button><span class="s-num">Share</span>
+                  </aside>
+                </section>
+
+                <!-- 4本目（任意） -->
+                <section class="shorts-item">
+                  <video playsinline muted preload="auto" class="shorts-video" src="https://drive.google.com/file/d/10fndPgRs7tq_hw7JZ_YDS7-4iHEnM-IJ/view?usp=drive_link"></video>
+                  <aside class="shorts-ui">
+                    <button class="s-btn">♡</button><span class="s-num">1.1k</span>
+                    <button class="s-btn">💬</button><span class="s-num">64</span>
+                    <button class="s-btn">↗</button><span class="s-num">Share</span>
+                  </aside>
+                </section>
+              </div>
+            </div>
+          </div>
+          <!-- 右：テキスト（いまの内容そのまま） -->
+          <div class="hero-copy">
+            <h1 class="hero-title">ころぷろじぇくと！</h1>
+            <p class="hero-lead">"自分だけでは届かなかった場所へ"</p>
+            <div class="hero-actions">
+              <a class="btn btn-primary" href="html/audition.html">オーディション</a>
+              <a class="btn btn-ghost" href="#talents">タレントを見る</a>
+            </div>
+          </div>
+        </div>
+        <!-- ▼ スクロール誘導（PCのみ表示） -->
+        <div class="scroll-indicator" aria-hidden="true">
+          <span class="scroll-text">SCROLL</span>
+          <span class="scroll-arrow"></span>
+        </div>
+        <!-- ▼ デコレーション（控えめな星・幾何・流れ星） -->
+        <div class="hero-decor" aria-hidden="true">
+          <!-- 小さな星（点） -->
+          <span class="dot dot--1"></span>
+          <span class="dot dot--2"></span>
+          <span class="dot dot--3"></span>
+          <span class="dot dot--4"></span>
+          <span class="dot dot--5"></span>
+          <span class="dot dot--6"></span>
+          <span class="dot dot--7"></span>
+
+          <!-- 幾何（正方形/三角形/丸） -->
+          <span class="geo geo-square geo--a"></span>
+          <span class="geo geo-tri    geo--b"></span>
+          <span class="geo geo-circle geo--c"></span>
+          <span class="geo geo--triangle-4"></span>
+          <span class="geo geo--triangle-5"></span>
+          <span class="geo geo--square-4"></span>
+          <span class="geo geo--square-5"></span>
+
+          <!-- 流れ星（たまにスーッ） -->
+          <span class="meteor meteor--1"></span>
+          <span class="meteor meteor--2"></span>
+          <span class="meteor meteor--3"></span>
+        </div>
+        <!-- Hero 内のSNSアイコン -->
+        <div class="hero-social" aria-label="Official links">
+          <a href="https://x.com/YourAccount" target="_blank" aria-label="X (Twitter)">
+            <i class="fab fa-x-twitter" aria-hidden="true"></i>
+          </a>
+          <a href="https://youtube.com/@YourChannel" target="_blank" aria-label="YouTube">
+            <i class="fab fa-youtube" aria-hidden="true"></i>
+          </a>
+          <a href="mailto:info@coroproject.jp" aria-label="Mail">
+            <i class="fas fa-envelope" aria-hidden="true"></i>
+          </a>
+        </div>
+      </section>
+      
+      <!-- ===== About / Company Statement ===== -->
+      <section id="about" class="section about">
+        <div class="container">
+          <div class="about-card">
+            <div class="about-grid">
+              <!-- 左：大見出し＆コピー -->
+              <div class="about-left">
+                <span class="about-eyebrow" aria-hidden="true"></span>
+                <h2 class="about-title">Creator First,<br>Creative Next.</h2>
+                <p class="about-copy-ja">
+                  新しいジブンになれる場を。<br>
+                  新しいキブンをつくる輪を。
+                </p>
+              </div>
+
+              <!-- 右：企業説明テキスト -->
+              <div class="about-right">
+                <p>
+                  私たちは、創ることを楽しむ人のためのプロダクションです。<br>
+                  企画・制作・配信・コミュニティ運営まで、クリエイターの挑戦を
+                  まるごと伴走し、あなたらしさが一番輝く瞬間を増やします。
+                </p>
+                <p>
+                  才能の芽が生まれるとき。まだ形になっていない「好き」が動き出すとき。<br>
+                  小さな一歩を大事にし、試行錯誤を歓迎し、失敗から学ぶ余白を用意します。
+                  ひとりでは届かなかった景色へ、一緒に行こう。
+                </p>
+                <p>
+                  作品も、配信も、ファンとの時間も、すべてがあなたの物語。<br>
+                  仲間と学び合い、尊重し合い、次の表現へと更新していく。
+                  ここは、つくる人のためのステージです。
+                </p>
+                <p class="about-cta-note">
+                  <strong>CORO PROJECT</strong> は、クリエイティブとテクノロジーの力で
+                  “自分だけでは届かなかった場所へ” を後押しします。
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== News ===== -->
+      <section id="news" class="section">
+        <div class="container">
+          <div class="section-head">
+            <h2 class="section-title">News</h2>
+            <a class="section-more" href="#">すべて見る →</a>
+          </div>
+
+          <div class="grid grid-3">
+            <article class="card">
+              <a class="card-body" href="#">
+                <div class="card-thumb" aria-hidden="true"></div>
+                <div class="card-meta">
+                  <time datetime="2025-08-20">2025.08.20</time>
+                  <span class="tag">お知らせ</span>
+                </div>
+                <h3 class="card-title">新規タレント募集 第一期 開始</h3>
+                <p class="card-text">応募要項やスケジュールをご確認ください。エントリーは特設ページより。</p>
+              </a>
+            </article>
+
+            <article class="card">
+              <a class="card-body" href="#">
+                <div class="card-thumb" aria-hidden="true"></div>
+                <div class="card-meta">
+                  <time datetime="2025-08-10">2025.08.10</time>
+                  <span class="tag">リリース</span>
+                </div>
+                <h3 class="card-title">公式サイト公開のお知らせ</h3>
+                <p class="card-text">CORO PROJECTの公式サイトを公開しました。最新情報を発信していきます。</p>
+              </a>
+            </article>
+
+            <article class="card">
+              <a class="card-body" href="#">
+                <div class="card-thumb" aria-hidden="true"></div>
+                <div class="card-meta">
+                  <time datetime="2025-08-01">2025.08.01</time>
+                  <span class="tag">イベント</span>
+                </div>
+                <h3 class="card-title">オフライン説明会の開催</h3>
+                <p class="card-text">都内会場にてオーディション説明会を実施します。参加登録はフォームから。</p>
+              </a>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== Talents（2人の16:9自己紹介プレート・スライダー） ===== -->
+      <section id="talents" class="section section-alt">
+        <div class="container">
+          <div class="section-head">
+            <h2 class="section-title">Talents</h2>
+            <a class="section-more" href="#">一覧を見る →</a>
+          </div>
+
+          <div class="talent-slider" aria-roledescription="carousel">
+            <div class="talent-viewport">
+              <div class="talent-slides" id="talentSlides">
+                <!-- Slide 1（テスト画像：埋め込みSVG） -->
+                <div class="talent-slide" aria-label="Member 1">
+                  <img alt="Member 1 placeholder" src="data:image/svg+xml;utf8,<?xml version='1.0' encoding='UTF-8'?><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1600 900'><defs><linearGradient id='g1' x1='0' y1='0' x2='1' y2='1'><stop offset='0%' stop-color='%236b5cff'/><stop offset='100%' stop-color='%2306b6d4'/></linearGradient></defs><rect width='1600' height='900' fill='url(%23g1)'/><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' font-family='Inter,Segoe UI,Arial' font-size='96' fill='white' opacity='0.92'>Member A — 16:9</text><text x='50%' y='62%' dominant-baseline='middle' text-anchor='middle' font-family='Inter,Segoe UI,Arial' font-size='40' fill='white' opacity='0.9'>Self-intro plate (test image)</text></svg>">
+                  <div class="talent-caption">Member A / YouTube・X</div>
+                </div>
+
+                <!-- Slide 2（テスト画像：埋め込みSVG） -->
+                <div class="talent-slide" aria-label="Member 2">
+                  <img alt="Member 2 placeholder" src="data:image/svg+xml;utf8,<?xml version='1.0' encoding='UTF-8'?><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1600 900'><defs><linearGradient id='g2' x1='1' y1='0' x2='0' y2='1'><stop offset='0%' stop-color='%2306b6d4'/><stop offset='100%' stop-color='%236b5cff'/></linearGradient></defs><rect width='1600' height='900' fill='url(%23g2)'/><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' font-family='Inter,Segoe UI,Arial' font-size='96' fill='white' opacity='0.92'>Member B — 16:9</text><text x='50%' y='62%' dominant-baseline='middle' text-anchor='middle' font-family='Inter,Segoe UI,Arial' font-size='40' fill='white' opacity='0.9'>Self-intro plate (test image)</text></svg>">
+                  <div class="talent-caption">Member B / Twitch・X</div>
+                </div>
+              </div>
+
+              <!-- controls -->
+              <div class="slider-controls">
+                <button class="slider-btn" id="prevBtn" aria-label="前へ">‹</button>
+                <button class="slider-btn" id="nextBtn" aria-label="次へ">›</button>
+              </div>
+              <div class="slider-dots">
+                <div class="slider-dot is-active" data-index="0" aria-label="1枚目"></div>
+                <div class="slider-dot" data-index="1" aria-label="2枚目"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== Audition CTA ===== -->
+      <section id="audition" class="section cta">
+        <div class="container cta-inner">
+          <div class="cta-copy">
+            <h2>Audition</h2>
+            <p>"自分だけでは届かなかった場所へ"</p>
+          </div>
+          <div class="cta-actions">
+            <a class="btn btn-primary btn-lg" href="html/audition.html">応募する</a>
+            <a class="btn btn-ghost btn-lg" href="html/audition.html#requirements">要項を読む</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- ===== Footer ===== -->
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <div class="footer-col">
+          <div class="brand brand--footer">
+            <img src="images/logo.png" alt="CORO PROJECT" class="footer-logo">
+            <span class="brand-text">CORO PROJECT</span>
+          </div>
+          <p class="footer-desc">CORO PROJECTはVTuberのプロデュース・配信支援を行うプロダクションです。</p>
+
+          <!-- ★ 問い合わせボタン（専用ページへ） -->
+          <div class="footer-actions">
+            <a class="btn btn-primary" href="html/contact.html">問い合わせ</a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>Links</h4>
+          <ul class="footer-links">
+            <li><a href="#news">News</a></li>
+            <li><a href="#talents">Talents</a></li>
+            <li><a href="./audition.html">Audition</a></li>
+            <li><a href="html/privacy.html">Privacy Policy</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Social</h4>
+          <ul class="footer-links">
+            <li><a href="#">YouTube</a></li>
+            <li><a href="#">X</a></li>
+            <li><a href="#">Twitch</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="container footer-copy">
+        <small>© <span id="year"></span> CORO PROJECT</small>
+      </div>
+    </footer>
+  </div> <!-- /#app -->
+
+  <!-- ===== Scripts ===== -->
+  <script>
+    // 年号
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // ===== Mobile Nav toggle =====
+    (function(){
+      const btn = document.getElementById('navToggle');
+      const nav = document.getElementById('siteNav');
+      if(!btn || !nav) return;
+      btn.addEventListener('click', ()=>{
+        const opened = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', String(!opened));
+        document.body.classList.toggle('nav-open', !opened);
+      });
+      window.addEventListener('keydown', (e)=>{
+        if(e.key === 'Escape' && document.body.classList.contains('nav-open')){
+          btn.setAttribute('aria-expanded','false');
+          document.body.classList.remove('nav-open');
+        }
+      });
+    })();
+
+    // ===== Preloader: “リアル”なバー + 本体1.5sフェード =====
+    (function(){
+      const loader = document.getElementById('preloader');
+      const bar = document.getElementById('bar');
+      const app = document.getElementById('app');
+
+      // Tuning
+      const MIN_VISIBLE = 1100;         // 最低表示時間(ms)
+      const MAX_FAKE_BEFORE_LOAD = 92;  // 実ロード前の上限(%)
+      const STALL_PROB = 0.18;          // 小休止確率
+      const BURST_PROB = 0.12;          // 急伸確率
+      const STALL_MS = [120, 520];      // 小休止長さ
+      const BURST_DELTA = [0.8, 2.2];   // 急伸量(%)
+      const BASE_STEP = [0.12, 0.55];   // 通常前進幅レンジ(%)
+      const TICK_MS = [80, 260];        // ティック間隔
+
+      bar.style.transition = 'width 140ms steps(6, end)';
+
+      const start = performance.now();
+      let p = 0, stallingUntil = 0, loaded = false;
+
+      const lerp = (a,b,t)=>a+(b-a)*t;
+      const rand = (min,max)=>min+Math.random()*(max-min);
+      const scheduleNext = ()=> setTimeout(tick, rand(TICK_MS[0], TICK_MS[1]));
+
+      function tick(){
+        const now = performance.now();
+
+        if (!loaded || (now - start) < MIN_VISIBLE){
+          if (now >= stallingUntil && Math.random() < STALL_PROB){
+            stallingUntil = now + rand(STALL_MS[0], STALL_MS[1]);
+          }
+          if (now < stallingUntil){
+            p += rand(0, 0.08); // 微動
+          } else {
+            const t = Math.min(1, p / 100);
+            const base = lerp(BASE_STEP[1], BASE_STEP[0], t); // 終盤ほど減速
+            p += rand(0, base);
+            if (Math.random() < BURST_PROB) p += rand(BURST_DELTA[0], BURST_DELTA[1]);
+          }
+          if (!loaded) p = Math.min(p, MAX_FAKE_BEFORE_LOAD);
+          bar.style.width = Math.max(0, Math.min(100, p)) + '%';
+          return scheduleNext();
+        }
+
+        // 完了 → 100% → ローダー消しつつ本体を表示
+        bar.style.transition = 'width 160ms steps(5, end)';
+        p = 100; bar.style.width = '100%';
+
+        setTimeout(() => {
+          loader.classList.add('hidden'); // ローダーをフェードアウト
+          app.classList.add('visible');   // 本体を1.5sでフェードイン（CSS）
+          document.documentElement.classList.add('page-ready');
+          setTimeout(() => loader.remove(), 400);
+        }, 240);
+      }
+
+      function finish(){
+        if (loaded) return;
+        loaded = true;
+        const elapsed = performance.now() - start;
+        const remain = Math.max(0, MIN_VISIBLE - elapsed);
+        setTimeout(tick, remain);
+      }
+
+      window.addEventListener('load', finish);
+      setTimeout(finish, 10000); // フェイルセーフ
+      scheduleNext();
+    })();
+
+    // ===== Talent Slider（自動スライド + ボタン/ドット） =====
+    (function(){
+      const slides = document.getElementById('talentSlides');
+      if(!slides) return;
+      const dots = Array.from(document.querySelectorAll('.slider-dot'));
+      const prev = document.getElementById('prevBtn');
+      const next = document.getElementById('nextBtn');
+
+      const NUM = 2;
+      let index = 0;
+      let timer = null;
+      const INTERVAL = 4000; // 自動スライド間隔
+
+      function go(to){
+        index = (to + NUM) % NUM;
+        slides.style.transform = `translateX(-${index * 100}%)`;
+        dots.forEach((d,i)=>d.classList.toggle('is-active', i===index));
+        restart();
+      }
+      function restart(){
+        clearTimeout(timer);
+        timer = setTimeout(()=>go(index+1), INTERVAL);
+      }
+      dots.forEach(d=>d.addEventListener('click', ()=>go(Number(d.dataset.index))));
+      prev && prev.addEventListener('click', ()=>go(index-1));
+      next && next.addEventListener('click', ()=>go(index+1));
+
+      // 初期スタート
+      restart();
+    })();
+    (function () {
+      if ('scrollRestoration' in history) {
+        history.scrollRestoration = 'manual';
+      }
+      // 一瞬でもズレないよう、最初に即座に戻す
+      const html = document.documentElement;
+      const prev = html.style.scrollBehavior || '';
+      html.style.scrollBehavior = 'auto';   // smooth を一旦OFF
+      window.scrollTo(0, 0);
+
+      // 画像やフォント読み込み完了後にもう一度0に固定→挙動を戻す
+      window.addEventListener('load', () => {
+        window.scrollTo(0, 0);
+        html.style.scrollBehavior = prev;   // 元の smooth 設定に戻す
+      }, { once: true });
+    })();
+    (function(){
+      const track = document.getElementById('shortsTrack');
+      if(!track) return;
+
+      const items  = Array.from(track.querySelectorAll('.shorts-item'));
+      const videos = items.map(it => it.querySelector('video'));
+      const DURATION = 10000; // 10秒ごと
+      let index = 0, timer;
+
+      function show(n){
+        index = (n + items.length) % items.length;
+        track.style.transform = `translateY(-${index * 100}%)`;
+
+        videos.forEach((v,i)=>{
+          if(i === index){
+            try { v.currentTime = 0; v.play(); } catch(e){}
+          }else{
+            try { v.pause(); } catch(e){}
+          }
+        });
+      }
+
+      // 自動送り
+      function start(){ stop(); timer = setInterval(()=>show(index+1), DURATION); }
+      function stop(){ if(timer) clearInterval(timer); }
+
+      // 初期表示
+      show(0); start();
+
+      // ページのタブ切替で無駄に回らないように
+      document.addEventListener('visibilitychange', ()=>{
+        if(document.hidden) stop(); else start();
+      });
+
+      // クリックで一時停止/再開したい場合（お好みで）
+      track.addEventListener('click', ()=>{
+        if(timer){ stop(); } else { start(); }
+      });
+    })();
+    // Aboutカードのスクロール発火
+    (function(){
+      const el = document.querySelector('.about-card');
+      if (!el) return;
+
+      // すでに見えているかを判定（フォールバック用）
+      function inView(node){
+        const r = node.getBoundingClientRect();
+        const vh = window.innerHeight || document.documentElement.clientHeight;
+        // 画面の15%〜85%の帯に少しでも重なったら「見えた」とみなす
+        return (r.top < vh * 0.85) && (r.bottom > vh * 0.15);
+      }
+      function revealOnce(){
+        if (inView(el)) {
+          el.classList.add('in');
+          window.removeEventListener('scroll', revealOnce);
+          window.removeEventListener('resize', revealOnce);
+        }
+      }
+
+      if ('IntersectionObserver' in window) {
+        const io = new IntersectionObserver((entries)=>{
+          entries.forEach(e=>{
+            if (e.isIntersecting) {
+              el.classList.add('in');
+              io.unobserve(el); // 一度だけ
+            }
+          });
+        }, {
+          root: null,
+          // 画面下側を15%ほど“早めに”切り上げて発火しやすく
+          rootMargin: '0px 0px -35% 0px',
+          threshold: 0.45
+        });
+        io.observe(el);
+
+        // 既に見えているケースにも対応
+        window.addEventListener('load', ()=> {
+          if (inView(el)) el.classList.add('in');
+        }, { once:true });
+
+      } else {
+        // IO 非対応のフォールバック
+        window.addEventListener('scroll', revealOnce, { passive:true });
+        window.addEventListener('resize', revealOnce);
+        window.addEventListener('load', revealOnce, { once:true });
+        revealOnce(); // 初回判定
+      }
+    })();
+  </script>
+</body>
+</html>
