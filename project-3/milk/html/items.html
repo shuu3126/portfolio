@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>商品一覧 | Office Sada</title>
+  <meta name="description" content="明治を中心にした商品ラインナップ。カテゴリから移動できます。">
+  <link rel="stylesheet" href="../styles.css" />
+  <style>
+    /* --- カテゴリナビ強調用の追記CSS --- */
+    html { scroll-behavior: smooth; }
+    .cat-nav{
+      position: sticky; top: var(--mh, 68px); z-index: 40;
+      background: rgba(255,255,255,.94);
+      backdrop-filter: saturate(180%) blur(8px);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      box-shadow: 0 6px 18px rgba(20,40,80,.06);
+      padding: 12px;
+      display: flex; gap: 12px; flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+    .cat-nav a{
+      flex:1;
+      text-align:center;
+      font-size:18px;
+      padding:14px 20px;
+      border-radius: 14px;
+      font-weight: 900;
+      border:1px solid var(--line);
+      background:#fff;
+      color:var(--ink);
+      text-decoration:none;
+      transition: all .2s ease;
+    }
+    .cat-nav a[aria-current="true"],
+    .cat-nav a:hover{
+      background:linear-gradient(#fff,#fff) padding-box,
+                 linear-gradient(90deg,#cfe7ff,transparent) border-box;
+      border:2px solid transparent;
+      transform: translateY(-2px);
+    }
+    .section-anchor{ scroll-margin-top: calc(var(--mh,68px) + 20px); }
+  </style>
+</head>
+<body id="top">
+<header class="header-wide">
+  <div class="wrap header-top">
+    <a class="brand" href="../index.html"><span>長崎宅配サービス <b>Office Sada</b></span><small>Nagasaki Delivery Services</small></a>
+    <div class="head-actions">
+      <!-- ★順序入れ替え：まず申込ボタン -->
+      <a class="btn cta-orange only-desktop" href="contact.html#apply">✎ 宅配サービスの新規お申込み</a>
+      <!-- 次に電話カード（PC右端側に寄る） -->
+      <a class="call-card only-desktop" href="tel:08027992388">
+        <span class="call-ico">📞</span>
+        <span class="call-text"><em>お客様窓口</em><b>080-2799-2388</b><small>受付 6:00–18:00</small></span>
+      </a>
+      <!-- ハンバーガー（PCではdisplay:none、SPのみ表示） -->
+      <button class="nav-toggle" aria-controls="mobileNav" aria-expanded="false" aria-label="メニュー">☰</button>
+    </div>
+  </div>
+  <div class="wrap header-row">
+    <nav aria-label="グローバルナビ">
+      <a href="items.html" aria-current="page">商品一覧</a>
+      <a href="service.html">宅配サービスについて</a>
+      <a href="company.html">会社案内</a>
+      <a href="contact.html">お問い合わせ</a>
+    </nav>
+  </div>
+  <!-- スマホ：2ボタンはハンバーガー内 -->
+  <div id="mobileNav" class="mobile-nav" hidden>
+    <div class="wrap">
+      <a class="call-card only-mobile" href="tel:08027992388">
+        <span class="call-ico">📞</span>
+        <span class="call-text"><em>お客様窓口</em><b>080-2799-2388</b><small>受付 6:00–18:00</small></span>
+      </a>
+      <a class="btn cta-orange only-mobile" href="contact.html#apply">✎ 宅配サービスの新規お申込み</a>
+      <hr class="mn-sep">
+      <a href="items.html" aria-current="page">商品一覧</a>
+      <a href="service.html">宅配サービスについて</a>
+      <a href="company.html">会社案内</a>
+      <a href="contact.html">お問い合わせ</a>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <!-- カテゴリナビ -->
+  <section class="sec-narrow" aria-label="カテゴリナビ">
+    <div class="cat-nav" id="catNav">
+      <a href="#cat-milk" data-target="cat-milk" aria-current="true">牛乳・乳飲料</a>
+      <a href="#cat-yogurt" data-target="cat-yogurt">ヨーグルト</a>
+      <a href="#cat-special" data-target="cat-special">季節・厳選品</a>
+    </div>
+  </section>
+
+  <!-- 各カテゴリごとに全商品表示 -->
+  <section class="sec" id="cat-milk">
+    <h2 class="section-anchor">牛乳・乳飲料</h2>
+    <div class="list">
+      <article class="item"><img src="../images/slide1.png" alt="牛乳"><div class="meta"><h3>明治 牛乳（例）</h3><p>毎朝の定番。低温管理でお届け。</p></div></article>
+      <article class="item"><img src="../images/slide2.png" alt="乳飲料"><div class="meta"><h3>乳飲料（例）</h3><p>家族で飲みやすい味わい。</p></div></article>
+      <article class="item"><img src="../images/slide3.png" alt="低脂肪乳"><div class="meta"><h3>低脂肪乳（例）</h3><p>すっきりカロリー控えめ。</p></div></article>
+    </div>
+  </section>
+
+  <section class="sec" id="cat-yogurt">
+    <h2 class="section-anchor">ヨーグルト</h2>
+    <div class="list">
+      <article class="item"><img src="../images/slide2.png" alt="R-1"><div class="meta"><h3>R-1（例）</h3><p>定期宅配で安定供給。</p></div></article>
+      <article class="item"><img src="../images/slide1.png" alt="LG21"><div class="meta"><h3>LG21（例）</h3><p>食後に続けやすい一本。</p></div></article>
+      <article class="item"><img src="../images/slide3.png" alt="のむヨーグルト"><div class="meta"><h3>のむヨーグルト（例）</h3><p>朝の忙しい時間に。</p></div></article>
+    </div>
+  </section>
+
+  <section class="sec" id="cat-special">
+    <h2 class="section-anchor">季節・厳選品</h2>
+    <div class="list">
+      <article class="item"><img src="../images/slide3.png" alt="季節商品"><div class="meta"><h3>季節限定（例）</h3><p>ギフトにもおすすめ。</p></div></article>
+      <article class="item"><img src="../images/slide1.png" alt="機能性飲料"><div class="meta"><h3>機能性飲料（例）</h3><p>身体づくりをサポート。</p></div></article>
+      <article class="item"><img src="../images/slide2.png" alt="厳選品"><div class="meta"><h3>厳選品（例）</h3><p>数量限定。お早めに。</p></div></article>
+    </div>
+  </section>
+</main>
+
+<footer class="footer-green">
+  <div class="wrap footer-grid">
+    <div class="footer-brand">
+      <div class="meiji-mark">meiji</div>
+      <div class="footer-title">株式会社 いしばしミルク（Office Sada）</div>
+      <dl class="addr">
+        <div><dt>本社</dt><dd>〒851-2127 長崎県西彼杵郡長与町高田郷</dd></div>
+        <div><dt>TEL</dt><dd><a href="tel:08027992388">080-2799-2388</a></dd></div>
+      </dl>
+    </div>
+    <div class="footer-cta">
+      <a class="btn cta-orange large" href="contact.html#apply">✎ 新規お申込み</a>
+      <p class="footer-tellead">お気軽にお問い合わせください</p>
+      <a class="footer-tel" href="tel:08027992388">080-2799-2388</a>
+      <div class="footer-note">（受付時間）平日 6:00〜18:00</div>
+    </div>
+  </div>
+  <div class="wrap copy">Copyright © <span id="y"></span> Office Sada.</div>
+</footer>
+
+<a class="fab to-top" href="#top" aria-label="先頭へ">↑</a>
+<a class="fab line" href="https://line.me/R/ti/p/@your-line-id" target="_blank" rel="noopener" aria-label="公式LINEへ">LINE</a>
+
+<script>
+  // ハンバーガー開閉
+  (function(){
+    var btn=document.querySelector('.nav-toggle');
+    var panel=document.getElementById('mobileNav'); if(!btn||!panel) return;
+    btn.addEventListener('click', function(){
+      var open=btn.getAttribute('aria-expanded')==='true';
+      btn.setAttribute('aria-expanded', String(!open));
+      panel.hidden=open; panel.classList.toggle('open', !open);
+      document.body.classList.toggle('menu-open', !open);
+    });
+    panel.addEventListener('click', function(e){
+      if(e.target.tagName==='A'){ btn.setAttribute('aria-expanded','false'); panel.hidden=true; panel.classList.remove('open'); document.body.classList.remove('menu-open'); }
+    });
+  })();
+
+  // カテゴリボタンのアクティブ同期
+  (function(){
+    const sections = ['cat-milk','cat-yogurt','cat-special'].map(id=>document.getElementById(id));
+    const links = Array.from(document.querySelectorAll('#catNav a'));
+    const on = id => links.forEach(a => a.setAttribute('aria-current', String(a.dataset.target===id)));
+
+    const io = new IntersectionObserver(entries=>{
+      const visible = entries.filter(e=>e.isIntersecting)
+        .sort((a,b)=>a.boundingClientRect.top - b.boundingClientRect.top)[0];
+      if(visible){ on(visible.target.id); }
+    }, { rootMargin: '-30% 0px -60% 0px', threshold: [0,.25,.5,.75,1] });
+
+    sections.forEach(sec=> io.observe(sec));
+    links.forEach(a=>a.addEventListener('click', ()=> on(a.dataset.target)));
+    document.getElementById('y').textContent=new Date().getFullYear();
+  })();
+</script>
+</body>
+</html>
