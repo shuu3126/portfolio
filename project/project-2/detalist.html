@@ -99,70 +99,6 @@
       </div>
     </section>
 
-    <!-- ▼▼ ここから追記：あなたがやったこと / 困ったこと / 意思決定 ▼▼ -->
-
-    <section class="section section-has-wm">
-      <div class="section-wm">MY WORK</div>
-      <div class="container">
-        <h2 class="section-title">担当範囲 / 実施内容</h2>
-        <ul class="profile-list">
-          <li><strong>ページ設計〜制作：</strong> 情報設計・ワイヤー・UIコンポーネント設計からHTML/CSS/JS実装まで一気通貫で担当。</li>
-          <li><strong>使用画像の作成・デザイン：</strong> ヒーロー/セクション用のビジュアルを用途別に最適化（解像度・比率・圧縮）。</li>
-          <li><strong>DBの管理・適用・実装：</strong> 基本的なテーブル設計・接続・CRUD処理を実装し、LPからのデータ連携を整備。</li>
-          <li><strong>問い合わせ導線：</strong> 公式LINEの開設（問い合わせで使用）と、<em>ヘッダー画像</em>・<em>アイコン</em>のデザイン制作。</li>
-        </ul>
-      </div>
-    </section>
-
-    <section class="section section-has-wm">
-      <div class="section-wm">CHALLENGES</div>
-      <div class="container">
-        <h2 class="section-title">行き詰まった点 / 困ったことと対処</h2>
-        <ul class="profile-list">
-          <li>
-            <strong>初めてのDB実装でトラブル多発</strong><br>
-            <em>難所：</em> 接続まわり/エンコード/権限設定/スキーマ更新の整合性。<br>
-            <em>対処：</em> 役割ごとにテーブルを最小構成で分割 → マイグレーション手順をメモ化 → 接続/例外処理を共通関数に集約。<br>
-            <em>結果：</em> 接続〜CRUDの失敗ポイントを切り分けしやすくなり、改修の影響範囲を限定。
-          </li>
-          <li>
-            <strong>ログイン機能の実装が難しかった</strong><br>
-            <em>難所：</em> セッション管理・バリデーション・リダイレクト制御・エラーハンドリング。<br>
-            <em>対処：</em> 「未ログイン/ログイン済み」で<em>ミドルウェア的チェック</em>を最初に挟み、処理を早期分岐。CSRF対策・入力サニタイズを基本セットに。<br>
-            <em>結果：</em> 認証まわりの分岐が明確になり、想定外の画面遷移を抑制。
-          </li>
-          <li>
-            <strong>ゲスト購入とログイン購入の分岐設計（PHP + DB 初心者には大きな壁）</strong><br>
-            <em>難所：</em> 同一の「購入」でも状態により必要画面・処理が異なる（ゲスト/ログイン/途中ログイン）。<br>
-            <em>対処：</em> 購入フローを<em>状態遷移図</em>に落とし込み、<code>guest → login → checkout</code> の3系統をルーティングで明確化。セッションに「進捗フラグ」を持たせて<em>戻り先/次遷移</em>を一元管理。<br>
-            <em>結果：</em> 迷子になりやすい分岐を解消し、テストケースの網羅がしやすくなった。
-          </li>
-          <li>
-            <strong>デザイン要件が自由度高すぎる</strong><br>
-            <em>難所：</em> 依頼主からの詳細指示がなく、方向性の意思決定コストが高い。<br>
-            <em>対処：</em> LPの目的に立ち返り、<em>白/黒/アクセント1色</em>＋<em>カード化</em>＋<em>階層強調</em>で読みやすさとCV導線を優先。CTAは常に高コントラストに。<br>
-            <em>結果：</em> 自由度の高い中でも一貫したトーン&マナーを維持し、内容が乗る器を先に固められた。
-          </li>
-        </ul>
-      </div>
-    </section>
-
-    <section class="section section-has-wm">
-      <div class="section-wm">DECISIONS</div>
-      <div class="container">
-        <h2 class="section-title">主な意思決定（設計 / コピー / UI）</h2>
-        <ul class="profile-list">
-          <li><strong>採用：</strong> 「1画面1メッセージ」＋直後に一次反論への回答（迷いの削減／CV直結）</li>
-          <li><strong>採用：</strong> CTA文言は「行為＋価値」（例：<em>無料で相談する</em>、<em>1分で問い合わせ</em>）で具体化</li>
-          <li><strong>採用：</strong> 見出し/本文/注記の<em>3段階のタイポ階層</em>とカードレイアウトでスキャン性を担保</li>
-          <li><strong>見送り：</strong> 色の多用・装飾過多（可読性とパフォーマンスを優先）</li>
-          <li><strong>見送り：</strong> 早期の複雑な推奨商品ロジック（DB学習段階では保守性を優先）</li>
-        </ul>
-      </div>
-    </section>
-
-    <!-- ▲▲ 追記ここまで ▲▲ -->
-
     <section class="section section-has-wm">
       <div class="section-wm">RETROSPECT</div>
       <div class="container">
@@ -177,7 +113,7 @@
     <section class="section"><div class="container" style="text-align:center;">
       <a class="btn ghost" href="../../index.html#works">← ポートフォリオに戻る</a>
     </div></section>
-      </main>
+  </main>
 
   <footer class="site-footer"><div class="container footer-inner">
     <small>© <span id="year"></span> Atsumu Sadakata</small>
