@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Project 3 | 補足資料（detalist.html）</title>
+  <meta name="description" content="Project 3（コーポレートサイト / Office Sada）の詳細。ゴール/構成/コピー/デザイン/実装/品質/観察メモ/担当範囲/課題/意思決定/振り返り/ギャラリー。">
+  <link rel="stylesheet" href="../../styles.css" />
+</head>
+<body>
+  <aside class="side-rail" aria-label="Section navigation">
+    <nav class="side-rail__nav">
+      <a class="side-link" href="../../index.html#profile">PROFILE</a>
+      <a class="side-link" href="../../index.html#works">WORKS</a>
+      <a class="side-link" href="../../index.html#career">CAREER</a>
+      <a class="side-link" href="../../index.html#contact">CONTACT</a>
+    </nav>
+  </aside>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero">
+      <div class="container hero-inner">
+        <p class="hero-eyebrow">PROJECT 3</p>
+        <h1 class="hero-name">コーポレートサイト（Office Sada / 明治の宅配）</h1>
+        <p class="hero-subname">ミルクテーマ：<b>パステル水色 × 乳白グラデ</b>＋<b>オレンジCTA</b>で親しみと行動を両立</p>
+      </div>
+    </section>
+
+    <!-- GOAL -->
+    <section class="section section-has-wm">
+      <div class="section-wm">GOAL</div>
+      <div class="container">
+        <h2 class="section-title">ゴール / KPI</h2>
+        <ul class="profile-list">
+          <li><strong>一次KPI：</strong> 「新規お申込み」CTAクリック率 / 問い合わせ送信</li>
+          <li><strong>二次KPI：</strong> 電話発信（TELリンク）/ 公式LINE遷移</li>
+          <li><strong>補助指標：</strong> 商品一覧・サービス説明の到達率、流入別直帰率</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- STRUCTURE -->
+    <section class="section section-has-wm">
+      <div class="section-wm">STRUCTURE</div>
+      <div class="container">
+        <h2 class="section-title">ページ構成 / ユーザー心理</h2>
+        <ol class="profile-list">
+          <li>Hero：ブランド/窓口を即提示（関心）</li>
+          <li>Slider：3枚の情緒イメージ＋短いキャプション（期待）</li>
+          <li>Philosophy：理念＋ベネフィットの箇条書き（納得）</li>
+          <li>Lineup：人気カテゴリを3カードで提示（探索欲）</li>
+          <li>Flow：申込〜開始の手順（安心）</li>
+          <li>News：季節/運用の最新情報（活動感）</li>
+          <li>Company & CTA：会社の信頼情報＋窓口明示（行動）</li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- COPY -->
+    <section class="section section-has-wm">
+      <div class="section-wm">COPY</div>
+      <div class="container">
+        <h2 class="section-title">コピー戦略</h2>
+        <ul class="profile-list">
+          <li>各セクションは<strong>1メッセージ</strong>＋短い補足で読み負荷を最小化</li>
+          <li>CTA文言は行為を明確化：<em>✎ 新規お申込み</em> / <em>会社案内をみる</em> / <em>問い合わせる</em></li>
+          <li>フッターでもTEL・申込導線を再掲し「迷わず終点」に誘導</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- DESIGN -->
+    <section class="section section-has-wm">
+      <div class="section-wm">DESIGN</div>
+      <div class="container">
+        <h2 class="section-title">デザイン（実装から確認できた事実）</h2>
+        <ul class="profile-list">
+          <li><strong>テーマ色：</strong> 文字濃紺 <code>#0f172a</code>、水色の線 <code>#E8EEF6</code>、背景は乳白のグラデ（<code>#E9F3FF</code> と <code>#FFF2CC</code>のラディアル重ね）</li>
+          <li><strong>ブランド色：</strong> ミルクブルー <code>#2A68E8</code>、サブの水色 <code>#A7D3FF</code></li>
+          <li><strong>CTA：</strong> 強調色は<b>オレンジ</b> <code>#ef6c00</code>（申込/モバイルボタン）</li>
+          <li><strong>背景モチーフ：</strong> 企業理念セクションは<code>images/haikei.milk.png</code>を<b>ほぼ原色</b>に近い濃度で敷き、必要に応じて薄いホワイトベールで可読性確保</li>
+          <li><strong>カードUI：</strong> 角丸18–20px＋淡いシャドウ、セクション見出しは帯状の淡白背景で視認性UP</li>
+          <li><strong>フッター：</strong> 一面の<b>パステル水色</b>（<code>#A7D3FF</code>）に赤い「meiji」ロゴでブランド連想を喚起</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- SPEC -->
+    <section class="section section-has-wm">
+      <div class="section-wm">SPEC</div>
+      <div class="container">
+        <h2 class="section-title">実装のポイント（確認できた仕様）</h2>
+        <ul class="profile-list">
+          <li><strong>ローダー：</strong> 初回ロードで<b>ミルクが満ちるアニメ</b>（SVG波＋泡）。ロード完了でフェードアウト</li>
+          <li><strong>ヘッダー：</strong> スクロール追従。PCは「申込→電話」の順で強調、SPはハンバーガー内にCTAと電話を格納</li>
+          <li><strong>スライダー：</strong> 箱型カード内で自動再生（約4.2秒間隔）。ドット/左右矢印、ホバーで一時停止、ドットに<code>aria-selected</code>を付与</li>
+          <li><strong>理念セクション：</strong> 上下に波形デコ、泡の小装飾、右側にイメージ</li>
+          <li><strong>商品一覧：</strong> カテゴリ内ナビは<b>sticky</b>で追従、IntersectionObserverで現在セクションのボタンをアクティブ化</li>
+          <li><strong>固定ボタン：</strong> 右下に「↑トップ」と<b>LINE</b>のFAB</li>
+          <li><strong>レスポンシブ：</strong> ブレイクポイントは概ね<b>900px</b>、グリッドは1列落ち・ナビ非表示→ドロワーへ</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- QUALITY -->
+    <section class="section section-has-wm">
+      <div class="section-wm">QUALITY</div>
+      <div class="container">
+        <h2 class="section-title">品質（SEO / A11y / Perf）</h2>
+        <ul class="profile-list">
+          <li>見出し階層＋<code>aria-label</code>（ナビ/スライダー）で意味付けを補強</li>
+          <li>画像は<code>object-fit: cover</code>と<code>aspect-ratio</code>でCLSを抑制</li>
+          <li>主要導線（申込/TEL/LINE）はヘッダー・本文・フッターで多点配置</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- OBSERVATIONS -->
+    <section class="section section-has-wm">
+      <div class="section-wm">OBSERVE</div>
+      <div class="container">
+        <h2 class="section-title">実装からの観察メモ（色・挙動・導線）</h2>
+        <ul class="profile-list">
+          <li><b>色設計は白黒ではなく</b>、乳白ベース＋水色グラデ＋ブルー系文字＋<b>オレンジCTA</b>の4象限で構成</li>
+          <li>企業理念の背景は<b>ミルク模様</b>を大きめに配置し、デバイス幅で視覚の密度が変わる</li>
+          <li>モバイルでは申込と電話の2大導線を<b>最上段</b>に出すドロワー設計で迷いを減らす</li>
+          <li>商品一覧は<b>カテゴリ内ジャンプ</b>を強化し、スクロールに伴ってナビ活性が追従</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- MY WORK -->
+    <section class="section section-has-wm">
+      <div class="section-wm">MY WORK</div>
+      <div class="container">
+        <h2 class="section-title">担当範囲 / 実施内容</h2>
+        <ul class="profile-list">
+          <li><strong>制作：</strong> サイトマップ/ワイヤーから実装（HTML/CSS/JS）。トップ/会社案内/商品/サービス/お問い合わせを一貫デザイン</li>
+          <li><strong>ビジュアル：</strong> 依頼主提供の画像を主体に、比率/容量/発色をページ目的に最適化</li>
+          <li><strong>スケジュール：</strong> 基礎が固まった時期に着手し<b>約1週間</b>で初版構築→運用に乗せた</li>
+          <li><strong>導線設計：</strong> 申込/TEL/LINEの3系統を各セクションで再掲し、離脱前の拾い上げを強化</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- CHALLENGES -->
+    <section class="section section-has-wm">
+      <div class="section-wm">CHALLENGES</div>
+      <div class="container">
+        <h2 class="section-title">困ったこと / 学びと対処</h2>
+        <ul class="profile-list">
+          <li>
+            <strong>要望変更が多く発生</strong><br>
+            <em>背景：</em> 実サイトは依頼主が使いたい画像・表現が都度更新。<br>
+            <em>対処：</em> コピー/画像/レイアウトを分離し、差し替え時の影響範囲を最小化。変更点はカテゴリ分けして合意形成を高速化。<br>
+            <em>学び：</em> <b>制作におけるコミュニケーションの重要性</b>を再認識。意思決定の粒度を揃えると改訂が速い。
+          </li>
+          <li>
+            <strong>短納期でも“雰囲気”に逃げない</strong><br>
+            <em>対処：</em> 配色トークン（インク/ライン/ブランド/アクセント）と角丸/影/余白を最初に固定し、全ページで一貫性を担保。
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- DECISIONS -->
+    <section class="section section-has-wm">
+      <div class="section-wm">DECISIONS</div>
+      <div class="container">
+        <h2 class="section-title">主な意思決定</h2>
+        <ul class="profile-list">
+          <li><strong>採用：</strong> <b>オレンジCTA</b>を主要行動に限定し、その他はブルー系で整える（識別性と視線誘導）</li>
+          <li><strong>採用：</strong> 乳白グラデ＋水色モチーフで「朝・清潔・やさしさ」を視覚化</li>
+          <li><strong>見送り：</strong> 濃色の全面帯や過度な装飾（清潔感と読みやすさを優先）</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- RETROSPECT -->
+    <section class="section section-has-wm">
+      <div class="section-wm">RETROSPECT</div>
+      <div class="container">
+        <h2 class="section-title">振り返り / 次の改善</h2>
+        <ul class="profile-list">
+          <li>Hero/CTAのAB差し替えがしやすいDOM分離をさらに徹底（文言・画像・間隔）</li>
+          <li>電話・LINEのクリック計測を実運用で可視化し、導線配置の最適化に反映</li>
+          <li>季節キャンペーンの画像テンプレを用意し、更新コストを削減</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- GALLERY -->
+    <section class="section section-has-wm">
+      <div class="section-wm">GALLERY</div>
+      <div class="container">
+        <h2 class="section-title">スクリーンショット</h2>
+        <div class="work-card">
+          <div class="work-media">
+            <img src="https://via.placeholder.com/1600x900.png?text=Hero+%2F+Header+%2F+CTA" alt="Heroとヘッダー周り（置き換え予定）">
+          </div>
+          <div class="work-body"><p>ヘッダー（申込→電話の順）、Hero、固定FAB（LINE/トップ）</p></div>
+        </div>
+        <div class="work-card">
+          <div class="work-media">
+            <img src="https://via.placeholder.com/1600x900.png?text=Philosophy+%2F+Milk+BG" alt="企業理念セクション（置き換え予定）">
+          </div>
+          <div class="work-body"><p>企業理念（ミルク背景＋波形/泡デコ）</p></div>
+        </div>
+        <div class="work-card">
+          <div class="work-media">
+            <img src="https://via.placeholder.com/1600x900.png?text=Items+%2F+Sticky+Cat+Nav" alt="商品一覧（置き換え予定）">
+          </div>
+          <div class="work-body"><p>商品一覧（カテゴリ内ナビの追従とアクティブ同期）</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- back -->
+    <section class="section">
+      <div class="container" style="text-align:center;">
+        <a class="btn ghost" href="../../index.html#works">← ポートフォリオに戻る</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <small>© <span id="year"></span> Atsumu Sadakata</small>
+    </div>
+  </footer>
+
+  <script>document.getElementById('year').textContent=new Date().getFullYear()</script>
+</body>
+</html>
