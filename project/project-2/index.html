@@ -1,3 +1,26 @@
+<?php
+// データベース接続情報
+$host = "localhost"; // エックスサーバーでは通常 "localhost"
+$dbname = "fluxpc_db"; // 作成したDB名
+$user = "fluxpc_user1"; // 作成したユーザー名
+$pass = "sadakata126"; // ユーザーパスワード
+
+try {
+    // PDOでDB接続
+    $conn = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8mb4", $user, $pass, [
+        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
+    ]);
+} catch (PDOException $e) {
+    die("接続失敗: " . $e->getMessage());
+}
+
+// 商品データを取得
+$stmt = $conn->prepare("SELECT * FROM products");
+$stmt->execute();
+$products = $stmt->fetchAll();
+?>
+
 <!DOCTYPE html>
     <html lang="ja">
     <head>
@@ -12,7 +35,7 @@
         document.addEventListener("DOMContentLoaded", function () {
             var userAgent = navigator.userAgent.toLowerCase();
             if (userAgent.match(/iphone|ipad|ipod|android/)) {
-                window.location.href = "sp.html"; // スマホ専用ページへリダイレクト
+                window.location.href = "sp.php"; // スマホ専用ページへリダイレクト
             }
         });
         </script>
